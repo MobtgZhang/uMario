@@ -2457,7 +2457,7 @@ std::string Map::getLevelName() {
 void Map::loadMinionsLVL_1_1() {
 	clearMinions();
 	// Goombas 一共六个
-	/*
+
 	addGoombas(1504, 368, true);
 	addGoombas(1552, 368, true);
 
@@ -2491,7 +2491,6 @@ void Map::loadMinionsLVL_1_1() {
 	addKoppa(2816, 96, 1, true);
 	addKoppa(4802, 368, 1, true);
 	addKoppa(5156, 368, 1, true);
-	*/
 }
 
 void Map::loadMinionsLVL_1_2() {
@@ -2579,45 +2578,25 @@ void Map::loadMinionsLVL_1_4() {
 void Map::loadMinionsLVL_2_1() {
 	clearMinions();
 
-	addSpring(188*32, 336);
+	addSpring(114*32, CCFG::GAME_HEIGHT-32*3);
+	addSpring(162*32, CCFG::GAME_HEIGHT-32*2);
 
-	addGoombas(24*32, CCFG::GAME_HEIGHT - 16 - 7*32, true);
-
-	addGoombas(42*32, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-	addGoombas(43*32 + 16, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-
-	addGoombas(59*32, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-	addGoombas(60*32 + 16, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-
-	addGoombas(68*32, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-	addGoombas(69*32 + 16, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-	addGoombas(71*32, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-
-	addGoombas(87*32, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-	addGoombas(88*32 + 16, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-	addGoombas(90*32, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-
-	addGoombas(102*32 + 16, CCFG::GAME_HEIGHT - 16 - 6*32, true);
-	addGoombas(114*32 + 16, CCFG::GAME_HEIGHT - 16 - 4*32, true);
-
-	addGoombas(120*32 + 16, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-
-	addGoombas(162*32, CCFG::GAME_HEIGHT - 16 - 2*32, true);
-	addGoombas(163*32 + 16, CCFG::GAME_HEIGHT - 16 - 2*32, true);
+	addGoombas(219*32, CCFG::GAME_HEIGHT - 8*32, true);
+	addGoombas(220*32, CCFG::GAME_HEIGHT - 9*32, true);
+	addGoombas(221*32, CCFG::GAME_HEIGHT - 10*32, true);
 	
-	addKoppa(32*32 - 2, CCFG::GAME_HEIGHT - 16 - 2*32, 1, true);
-	addKoppa(33*32, CCFG::GAME_HEIGHT - 16 - 2*32, 1, true);
-
-	addKoppa(55*32, CCFG::GAME_HEIGHT - 16 - 6*32, 1, true);
-	addKoppa(66*32, CCFG::GAME_HEIGHT - 16 - 2*32, 1, true);
-
-	addKoppa(137*32, CCFG::GAME_HEIGHT - 16 - 2*32, 1, true);
+	//长翅膀的Koppa，一共10个
+	addKoppa(33*32, CCFG::GAME_HEIGHT - 8*3 - 8*32, 0, true);
+	addKoppa(39*32, CCFG::GAME_HEIGHT - 16 - 5*32, 0, true);
+	addKoppa(43*32, CCFG::GAME_HEIGHT - 16 - 5*32, 0, true);
+	addKoppa(45*32, CCFG::GAME_HEIGHT - 8*3 - 8*32, 0, true);
+	addKoppa(49*32, CCFG::GAME_HEIGHT - 8*3 - 8*32, 0, true);
 	addKoppa(151*32, CCFG::GAME_HEIGHT - 16 - 4*32, 0, true);
-	addKoppa(169*32, CCFG::GAME_HEIGHT - 16 - 2*32, 0, true);
-	addKoppa(171*32, CCFG::GAME_HEIGHT - 16 - 2*32, 0, true);
-
-	addKoppa(185*32, CCFG::GAME_HEIGHT - 16 - 2*32, 1, true);
-	
+	addKoppa(175*32, CCFG::GAME_HEIGHT - 4 - 6*32, 0, true);
+	addKoppa(179*32, CCFG::GAME_HEIGHT - 8 - 8*32, 0, true);
+	addKoppa(205*32, CCFG::GAME_HEIGHT - 6*32, 0, true);
+	addKoppa(210*32, CCFG::GAME_HEIGHT - 7*32, 0, true);
+	/*
 	addPlant(46*32 + 16, CCFG::GAME_HEIGHT - 10 - 5*32);
 	addPlant(74*32 + 16, CCFG::GAME_HEIGHT - 10 - 5*32);
 	addPlant(103*32 + 16, CCFG::GAME_HEIGHT - 10 - 5*32);
@@ -2625,6 +2604,7 @@ void Map::loadMinionsLVL_2_1() {
 	addPlant(122*32 + 16, CCFG::GAME_HEIGHT - 10 - 5*32);
 	addPlant(130*32 + 16, CCFG::GAME_HEIGHT - 10 - 6*32);
 	addPlant(176*32 + 16, CCFG::GAME_HEIGHT - 10 - 4*32);
+	*/
 }
 
 void Map::loadMinionsLVL_2_2() {
@@ -3924,61 +3904,80 @@ void Map::loadLVL_1_1() {
 	// ----- PIPEEVENT
 	loadPipeEventsLVL_1_1();
 
-	// ----- Bush -----
-/*
-	structBush(0, 2, 2);
-	structBush(16, 2, 1);
-	structBush(48, 2, 2);
-	structBush(64, 2, 1);
-	structBush(96, 2, 2);
-	structBush(112, 2, 1);
-	structBush(144, 2, 2);
-	structBush(160, 2, 1);
-	structBush(192, 2, 2);
-	structBush(208, 2, 1);*/
-
-	// ----- Bush -----
-
 	// ----- Clouds -----
-	/*
-	structCloud(8, 10, 1);
-	structCloud(19, 11, 1);
-	structCloud(27, 10, 3);
-	structCloud(36, 11, 2);
-	structCloud(56, 10, 1);
-	structCloud(67, 11, 1);
-	structCloud(75, 10, 3);
-	structCloud(84, 11, 2);
-	structCloud(104, 10, 1);
-	structCloud(115, 11, 1);
-	structCloud(123, 10, 3);
-	structCloud(132, 11, 2);
-	structCloud(152, 10, 1);
-	structCloud(163, 11, 1);
-	structCloud(171, 10, 3);
-	structCloud(180, 11, 2);
-	structCloud(200, 10, 1);
-	structCloud(211, 11, 1);
-	structCloud(219, 10, 3);*/
+	structCloud(0, 10, 2);
+	structCloud(18, 10, 1);
+	structCloud(27, 11, 1);
+	structCloud(30, 10, 2);
+	
+	structCloud(45, 11, 1);
+	structCloud(48, 10, 2);
+
+	structCloud(66, 10, 1);
+	
+	structCloud(75, 11, 1);
+	structCloud(78, 10, 2);
+
+	structCloud(93, 11, 1);
+	structCloud(96, 10, 2);
+
+	structCloud(114, 10, 1);
+	
+	structCloud(123, 11, 1);
+	structCloud(126, 10, 2);
+	
+	structCloud(141, 11, 1);
+	structCloud(144, 10, 2);
+
+	structCloud(162, 10, 1);
+
+	structCloud(171, 11, 1);
+	structCloud(174, 10, 2);
+
+	structCloud(189, 11, 1);
+	structCloud(192, 10, 2);
 
 	// ----- Clouds -----
 
-	// ----- Grass -----
+	// ----- Tree -----
+	structTree(11, 2, 0,true);
+	structTree(13, 2, 1,true);
 
-	/*
-	structGrass(11, 2, 3);
-	structGrass(23, 2, 1);
-	structGrass(41, 2, 2);
-	structGrass(59, 2, 3);
-	structGrass(71, 2, 1);
-	structGrass(89, 2, 2);
-	structGrass(107, 2, 3);
-	structGrass(119, 2, 1);
-	structGrass(137, 2, 2);
-	structGrass(157, 2, 1);
-	structGrass(167, 2, 1);
-	structGrass(205, 2, 1);
-	structGrass(215, 2, 1);*/
+	structTree(21, 2, 1,true);
+	structTree(23, 2, 0,true);
+	structTree(24, 2, 0,true);
+
+	structTree(43, 2, 1,true);
+
+	structTree(59, 2, 0,true);
+	structTree(61, 2, 1,true);
+
+	structTree(69, 2, 1,true);
+	structTree(72, 2, 0,true);
+
+	structTree(88, 2, 0,true);
+	structTree(91, 2, 1,true);
+
+	structTree(107, 2, 0,true);
+	structTree(109, 2, 1,true);
+
+	structTree(117, 2, 1,true);
+	structTree(119, 2, 0,true);
+	structTree(120, 2, 0,true);
+
+	structTree(136, 2, 0,true);
+	structTree(139, 2, 1,true);
+
+	structTree(155, 2, 0,true);
+	structTree(157, 2, 1,true);
+
+	structTree(165, 2, 1,true);
+	structTree(167, 2, 0,true);
+	structTree(169, 2, 0,true);
+
+	structTree(184, 2, 0,true);
+	structTree(187, 2, 1,true);
+	// ----- Clouds -----
 
 	// ----- Grass -----
 
@@ -4009,10 +4008,12 @@ void Map::loadLVL_1_1() {
 	// ----- GND 2 -----
 
 	// ----- BRICK -----
+	
 	for(int k=18;k<=21;k++){
 		structBrick(k, 5, 1, 1);
 		structBrick(k, 9, 1, 1);
 	}
+	lMap[19][5]->setSpawnMushroom(true);
 
 	for(int k=58;k<=68;k++){
 		structBrick(k, 5, 1, 1);
@@ -4021,11 +4022,16 @@ void Map::loadLVL_1_1() {
 	for(int k=26;k<=30;k++){
 		struckBlockQ(k, 5, 1);
 	}
+	
 
 
 	for(int k=56;k<=69;k++){
 		structBrick(k, 9, 1, 1);
 	}
+	
+	lMap[56][5]->setSpawnStar(true);
+
+	structBrick(72, 5, 1, 1);
 
 	for(int k=73;k<=76;k++){
 		structBrick(k, 9, 1, 1);
@@ -4034,72 +4040,25 @@ void Map::loadLVL_1_1() {
 	for(int k=78;k<=90;k++){
 		structBrick(k, 9, 1, 1);
 	}
-
 	for(int k=87;k<=93;k++){
 		struckBlockQ(k, 5, 1);
 	}
-
-
+	
 	for(int k=125;k<=130;k++){
 		structBrick(k, 9, 1, 1);
 	}
-
-	/*slMap[21][5]->setSpawnMushroom(true);
-	structBrick(22, 5, 1, 1);
-	struckBlockQ(22, 9, 1);
-	struckBlockQ(23, 5, 1);
-	structBrick(24, 5, 1, 1);
-
-	struckBlockQ2(64, 6, 1);
-	lMap[64][6]->setSpawnMushroom(true);
-	lMap[64][6]->setPowerUP(false);
-
-	structBrick(77, 5, 1, 1);
-	struckBlockQ(78, 5, 1);
-	lMap[78][5]->setSpawnMushroom(true);
-	structBrick(79, 5, 1, 1);
-
-	structBrick(80, 9, 8, 1);
-	structBrick(91, 9, 3, 1);
-	struckBlockQ(94, 9, 1);
-	structBrick(94, 5, 1, 1);
-	lMap[94][5]->setNumOfUse(4);
-
-	structBrick(100, 5, 2, 1);
-
-	struckBlockQ(106, 5, 1);
-	struckBlockQ(109, 5, 1);
-	struckBlockQ(109, 9, 1);
-	lMap[109][9]->setSpawnMushroom(true);
-	struckBlockQ(112, 5, 1);
-
-	structBrick(118, 5, 1, 1);
-
-	structBrick(121, 9, 3, 1);
-
-	structBrick(128, 9, 1, 1);
-	struckBlockQ(129, 9, 2);
-	structBrick(131, 9, 1, 1);
-
-	structBrick(129, 5, 2, 1);
-
-	structBrick(168, 5, 2, 1);
-	struckBlockQ(170, 5, 1);
-	structBrick(171, 5, 1, 1);
-
-	lMap[101][5]->setSpawnStar(true);
-	*/
-	// ----- BRICK -----
-
+	for(int k=146;k<=149;k++){
+		struckBlockQ(k, 5, 1);
+	}
+	lMap[149][5]->setSpawnMushroom(true);
+	// ----- COINS -----
+	structCoins(58, 10, 8, 1);
 	// ----- PIPES -----
-
-	
 	structPipe(39, 2, 3);
 	structPipe(123, 2, 3);
 	structPipe(128, 2, 3);
 	structPipe(142, 2, 3);
-	structPipe(163, 2, 3);
-	// ----- PIPES -----
+	structPipe(163, 2, 1);
 
 	// ----- END
 
@@ -4127,6 +4086,7 @@ void Map::loadLVL_1_1() {
 	// ----- END LEVEL
 
 	this->iLevelType = 0;
+	
 }
 
 void Map::loadLVL_1_2() {
@@ -4553,113 +4513,64 @@ void Map::loadLVL_2_1() {
 	loadMinionsLVL_2_1();
 	loadPipeEventsLVL_2_1();
 
-	structCloud(18, 10, 1);
-	structCloud(27, 11, 1);
-	structCloud(30, 10, 2);
-	structCloud(45, 11, 1);
-	structCloud(48, 10, 2);
-	structCloud(66, 10, 1);
-	structCloud(75, 11, 1);
-	structCloud(78, 10, 2);
-	structCloud(93, 11, 1);
-	structCloud(96, 10, 2);
-	structCloud(114, 10, 1);
-	structCloud(123, 11, 1);
-	structCloud(126, 10, 2);
-	structCloud(141, 11, 1);
-	structCloud(144, 10, 2);
-	structCloud(162, 10, 1);
-	structCloud(171, 11, 1);
-	structCloud(174, 10, 2);
-	structCloud(189, 11, 1);
-	structCloud(192, 10, 2);
-	structCloud(210, 10, 1);
-	structCloud(219, 11, 1);
+	structCloud(8, 10, 1);
 
-	structFence(14, 2, 4);
-	structFence(38, 2, 2);
-	structFence(41, 2, 1);
-	structFence(62, 2, 4);
-	structFence(86, 2, 2);
-	structFence(89, 2, 1);
-	structFence(110, 2, 4);
-	structFence(134, 2, 2);
-	structFence(137, 2, 1);
-	structFence(158, 2, 4);
-	structFence(182, 2, 2);
-	structFence(185, 2, 1);
-	structFence(209, 2, 1);
+	structCloud(19, 11, 1);
+	
+	structCloud(27, 10, 3);
+	
+	structCloud(36, 11, 2);
+	
+	structCloud(56, 10, 1);
+	
+	structCloud(67, 10, 1);
+	structCloud(75, 10, 3);
 
-	structPipe(46, 2, 3);
-	structPipe(74, 2, 3);
-	structPipe(103, 2, 3);
-	structPipe(115, 2, 1);
-	structPipe(122, 2, 3);
-	structPipe(126, 2, 2);
-	structPipe(130, 2, 4);
-	structPipe(176, 2, 2);
+	structCloud(84, 11, 2);
+
+	structCloud(105, 10, 1);
+	structCloud(115, 11, 1);
+	structCloud(123, 10, 3);
+	structCloud(132, 11, 2);
+
+	structCloud(152, 10, 1);
+	structCloud(163, 11, 1);
+	structCloud(171, 10, 3);
+	structCloud(180, 11, 2);
+
+	structCloud(200, 10, 1);
+	structCloud(211, 11, 1);
+	structCloud(219, 10, 3);
+	structCloud(248, 10, 1);
 
 	structCastleBig(-2, 2);
 
-	structTree(11, 2, 1, false);
-	structTree(13, 2, 1, true);
-	structTree(21, 2, 1, true);
-	structTree(40, 2, 1, false);
-	structTree(43, 2, 1, true);
-	structTree(59, 2, 1, false);
-	structTree(61, 2, 1, true);
-	structTree(69, 2, 1, true);
-	structTree(71, 2, 1, false);
-	structTree(72, 2, 1, false);
-	structTree(88, 2, 1, false);
-	structTree(91, 2, 1, true);
-	structTree(109, 2, 1, true);
-	structTree(117, 2, 1, true);
-	structTree(119, 2, 1, false);
-	structTree(120, 2, 1, false);
-	structTree(136, 2, 1, false);
-	structTree(155, 2, 1, false);
-	structTree(157, 2, 1, true);
-	structTree(165, 2, 1, true);
-	structTree(167, 2, 1, false);
-	structTree(168, 2, 1, false);
-	structTree(184, 2, 1, false);
-	structTree(187, 2, 1, true);
-	structTree(203, 2, 1, false);
-	structTree(213, 2, 1, true);
-	structTree(215, 2, 1, false);
-	structTree(216, 2, 1, false);
+	structBrick(61, 9, 3, 1);
+	structBrick(62, 9, 3, 1);
+	lMap[62][9]->setSpawnStar(true);
+	structBrick(63, 9, 3, 1);
 
-	structBrick(15, 5, 3, 1);
-	structBrick(28, 9, 4, 1);
-	structBrick(68, 5, 1, 1);
-	structBrick(69, 9, 4, 1);
-	structBrick(81, 9, 5, 1);
-	structBrick(92, 9, 4, 1);
-	structBrick(125, 9, 4, 1);
-	structBrick(161, 5, 1, 1);
-	lMap[161][5]->setNumOfUse(7);
-	structBrick(164, 9, 5, 1);
-	structBrick(172, 9, 1, 1);
-	structBrick(185, 5, 2, 1);
+	structBrick(134, 9, 3, 1);
+	structBrick(135, 9, 3, 1);
+	structBrick(136, 9, 3, 1);
+	structBrick(137, 9, 3, 1);
+	structBrick(138, 9, 3, 1);
+	structBrick(139, 9, 3, 1);
+	structBrick(140, 9, 3, 1);
+	structBrick(141, 9, 3, 1);
 
-	lMap[69][9]->setSpawnStar(true);
+	structBrick(139, 5, 3, 1);
+	structBrick(140, 5, 3, 1);
+	structBrick(141, 5, 3, 1);
 
-	lMap[16][5]->setSpawnMushroom(true);
-	lMap[28][9]->setSpawnMushroom(true);
-	lMap[28][9]->setPowerUP(false);
-	lMap[53][5]->setSpawnMushroom(true);
-	lMap[125][9]->setSpawnMushroom(true);
-	lMap[172][9]->setSpawnMushroom(true);
+	struckBlockQ(40, 9, 1);
+	struckBlockQ(42, 9, 1);
+	lMap[42][9]->setSpawnMushroom(true);
+	struckBlockQ(44, 9, 1);
 
-	struckBlockQ(53, 5, 5);
-	struckBlockQ(53, 9, 5);
-	struckBlockQ(79, 5, 4);
-	struckBlockQ(85, 5, 3);
-	struckBlockQ(170, 5, 1);
+	lMap[100][12]->setSpawnMushroom(true);
 
-	struckBlockQ2(28, 5, 1);
-	struckBlockQ2(186, 9, 1);
+	struckBlockQ(148, 5, 4);
 
 	structGND2(20,2, 5, true);
 	structGND2(34, 2, 1, 4);
@@ -4668,8 +4579,8 @@ void Map::loadLVL_2_1() {
 	structGND2(190, 2, 2, 10);
 
 	structGND2(200, 2, 1, 1);
-	structEnd(200, 3, 9);
-	structCastleSmall(204, 2);
+	structEnd(232, 2, 9);
+	structCastleSmall(235, 2);
 
 	// -- MAP 2-1-2
 
