@@ -1,6 +1,6 @@
 #include "Music.h"
-#include "Core.h"
-#include "SDL_mixer.h"
+#include "Application.h"
+#include <SDL2/SDL_mixer.h>
 
 /* ******************************************** */
 
@@ -74,27 +74,27 @@ void Music::changeMusic(bool musicByLevel, bool forceChange) {
 	eMusic eNew = currentMusic;
 
 	if(musicByLevel) {
-		if(CCore::getMap()->getInEvent() && CCore::getMap()->getEvent()->inEvent) {
+		if(Application::getMap()->getInEvent() && Application::getMap()->getEvent()->inEvent) {
 			eNew = mNOTHING;
 			PlayChunk(cINTERMISSION);
 		} else {
-			switch(CCore::getMap()->getLevelType()) {
+			switch(Application::getMap()->getLevelType()) {
 				case 0: case 4:
-					eNew = CCore::getMap()->getMapTime() > 90 ? mOVERWORLD : mOVERWORLDFAST;
+					eNew = Application::getMap()->getMapTime() > 90 ? mOVERWORLD : mOVERWORLDFAST;
 					break;
 				case 1:
-					eNew = CCore::getMap()->getMapTime() > 90 ? mUNDERWORLD : mUNDERWORLDFAST;
+					eNew = Application::getMap()->getMapTime() > 90 ? mUNDERWORLD : mUNDERWORLDFAST;
 					break;
 				case 2:
-					eNew = CCore::getMap()->getMapTime() > 90 ? mUNDERWATER : mUNDERWATERFAST;
+					eNew = Application::getMap()->getMapTime() > 90 ? mUNDERWATER : mUNDERWATERFAST;
 					break;
 				case 3:
-					eNew = CCore::getMap()->getMapTime() > 90 ? mCASTLE : mCASTLEFAST;
+					eNew = Application::getMap()->getMapTime() > 90 ? mCASTLE : mCASTLEFAST;
 					break;
 				case 100:
 					eNew = mNOTHING;
 					PlayChunk(cINTERMISSION);
-					CCore::getMap()->setLevelType(0);
+					Application::getMap()->setLevelType(0);
 					break;
 				default:
 					eNew = mNOTHING;

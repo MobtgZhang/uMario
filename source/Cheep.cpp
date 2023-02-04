@@ -1,7 +1,7 @@
 #include "Cheep.h"
-#include "Core.h"
-#include "stdlib.h"
-#include "time.h"
+#include "Application.h"
+#include <cstdlib>
+#include <ctime>
 
 /* ******************************************** */
 
@@ -155,9 +155,9 @@ void Cheep::Update() {
 
 void Cheep::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(minionState == -2) {
-		iIMG->DrawVert(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + 2);
+		iIMG->DrawVert(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + 2);
 	} else {
-		iIMG->Draw(rR,(int)(fXPos + CCore::getMap()->getXPos()), (int)fYPos, moveDirection);
+		iIMG->Draw(rR,(int)(fXPos + Application::getMap()->getXPos()), (int)fYPos, moveDirection);
 	}
 }
 
@@ -172,6 +172,6 @@ void Cheep::collisionWithPlayer(bool TOP) {
 		moveYDIR = false;
 		this->jumpDistance = CCFG::GAME_HEIGHT - fYPos;
 	} else {
-		CCore::getMap()->playerDeath(true, false);
+		Application::getMap()->playerDeath(true, false);
 	}
 }

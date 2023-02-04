@@ -1,5 +1,5 @@
 #include "Bubble.h"
-#include "Core.h"
+#include "Application.h"
 #include "CFG.h"
 
 /* ******************************************** */
@@ -28,7 +28,7 @@ void Bubble::Update() {
 }
 
 void Bubble::Draw(SDL_Renderer* rR, CIMG* iIMG) {
-	iIMG->Draw(rR,(int)(iXPos + CCore::getMap()->getXPos()), iYPos);
+	iIMG->Draw(rR,(int)(iXPos + Application::getMap()->getXPos()), iYPos);
 }
 
 /* ******************************************** */

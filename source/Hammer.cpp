@@ -1,5 +1,5 @@
 #include "Hammer.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -7,7 +7,7 @@ Hammer::Hammer(int iXPos, int iYPos, bool moveDirection) {
 	this->fXPos = (float)iXPos + 4;
 	this->fYPos = (float)iYPos + 4;
 
-	this->iBlockID = CCore::getMap()->getLevelType() == 0 || CCore::getMap()->getLevelType() == 4 ? 47 : 48;
+	this->iBlockID = Application::getMap()->getLevelType() == 0 || Application::getMap()->getLevelType() == 4 ? 47 : 48;
 
 	this->iHitBoxX = 24;
 	this->iHitBoxY = 24;
@@ -47,9 +47,9 @@ void Hammer::Update() {
 
 void Hammer::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(minionState != -2) {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos() - 4, (int)fYPos - 4, false);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos() - 4, (int)fYPos - 4, false);
 	} else {
-		iIMG->DrawVert(rR, (int)fXPos + (int)CCore::getMap()->getXPos() - 4, (int)fYPos - 4);
+		iIMG->DrawVert(rR, (int)fXPos + (int)Application::getMap()->getXPos() - 4, (int)fYPos - 4);
 	}
 }
 
@@ -74,9 +74,9 @@ void Hammer::minionPhysics() {
 /* ******************************************** */
 
 void Hammer::collisionWithPlayer(bool TOP) {
-	if(CCore::getMap()->getPlayer()->getStarEffect()) {
+	if(Application::getMap()->getPlayer()->getStarEffect()) {
 		setMinionState(-2);
 	} else {
-		CCore::getMap()->playerDeath(true, false);
+		Application::getMap()->playerDeath(true, false);
 	}
 }

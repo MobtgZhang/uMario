@@ -1,5 +1,5 @@
 #include "Vine.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -48,14 +48,14 @@ void Vine::Update() {
 
 void Vine::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(jumpDistance < 32) {
-		CCore::getMap()->getMinionBlock(iBlockID - 1)->Draw(rR, (int)(iX*32 + CCore::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT - 16 - iY*32 - jumpDistance));
+		Application::getMap()->getMinionBlock(iBlockID - 1)->Draw(rR, (int)(iX*32 + Application::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT - 16 - iY*32 - jumpDistance));
 	} else {
-		CCore::getMap()->getMinionBlock(iBlockID - 1)->Draw(rR, (int)(iX*32 + CCore::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT - 16 - iY*32 - jumpDistance));
+		Application::getMap()->getMinionBlock(iBlockID - 1)->Draw(rR, (int)(iX*32 + Application::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT - 16 - iY*32 - jumpDistance));
 		for(int i = 0; i < jumpDistance/32 - 1; i++) {
-			iIMG->Draw(rR, (int)(iX*32 + CCore::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT + 16 - iY*32 + i*32 - jumpDistance), false);
+			iIMG->Draw(rR, (int)(iX*32 + Application::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT + 16 - iY*32 + i*32 - jumpDistance), false);
 		}
 	}
-	CCore::getMap()->getBlock(CCore::getMap()->getMapBlock((int)iX, (int)iY)->getBlockID())->getSprite()->getTexture()->Draw(rR, (int)(iX*32 + CCore::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT - iY*32 - 16 - CCore::getMap()->getMapBlock((int)iX, (int)iY)->getYPos()));
+	Application::getMap()->getBlock(Application::getMap()->getMapBlock((int)iX, (int)iY)->getBlockID())->getSprite()->getTexture()->Draw(rR, (int)(iX*32 + Application::getMap()->getXPos()), (int)(CCFG::GAME_HEIGHT - iY*32 - 16 - Application::getMap()->getMapBlock((int)iX, (int)iY)->getYPos()));
 }
 
 void Vine::minionPhysics() { }
@@ -64,99 +64,99 @@ void Vine::minionPhysics() { }
 
 void Vine::collisionWithPlayer(bool TOP) {
 	if(minionState == 0) {
-		CCore::getMap()->setInEvent(true);
+		Application::getMap()->setInEvent(true);
 
-		CCore::getMap()->getEvent()->resetData();
-		CCore::getMap()->getPlayer()->resetJump();
-		CCore::getMap()->getPlayer()->stopMove();
+		Application::getMap()->getEvent()->resetData();
+		Application::getMap()->getPlayer()->resetJump();
+		Application::getMap()->getPlayer()->stopMove();
 
-		CCore::getMap()->getEvent()->eventTypeID = CCore::getMap()->getEvent()->eNormal;
+		Application::getMap()->getEvent()->eventTypeID = Application::getMap()->getEvent()->eNormal;
 
-		CCore::getMap()->getEvent()->iSpeed = 2;
+		Application::getMap()->getEvent()->iSpeed = 2;
 
-		CCore::getMap()->getEvent()->newLevelType = CCore::getMap()->getLevelType();
-		CCore::getMap()->getEvent()->newCurrentLevel = CCore::getMap()->getCurrentLevelID();
-		CCore::getMap()->getEvent()->newMoveMap = true;
-		CCore::getMap()->getEvent()->iDelay = 0;
-		CCore::getMap()->getEvent()->inEvent = false;
+		Application::getMap()->getEvent()->newLevelType = Application::getMap()->getLevelType();
+		Application::getMap()->getEvent()->newCurrentLevel = Application::getMap()->getCurrentLevelID();
+		Application::getMap()->getEvent()->newMoveMap = true;
+		Application::getMap()->getEvent()->iDelay = 0;
+		Application::getMap()->getEvent()->inEvent = false;
 
-		CCore::getMap()->getEvent()->newMoveMap = true;
-		CCore::getMap()->getEvent()->newUnderWater = false;
+		Application::getMap()->getEvent()->newMoveMap = true;
+		Application::getMap()->getEvent()->newUnderWater = false;
 
-		if(fXPos + iHitBoxX/2 > CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos()) {
-			CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eRIGHT);
-			CCore::getMap()->getEvent()->vOLDLength.push_back(CCore::getMap()->getPlayer()->getHitBoxX() - 4);
+		if(fXPos + iHitBoxX/2 > Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos()) {
+			Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eRIGHT);
+			Application::getMap()->getEvent()->vOLDLength.push_back(Application::getMap()->getPlayer()->getHitBoxX() - 4);
 		} else {
-			CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eLEFT);
-			CCore::getMap()->getEvent()->vOLDLength.push_back(CCore::getMap()->getPlayer()->getHitBoxX() - 4);
+			Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eLEFT);
+			Application::getMap()->getEvent()->vOLDLength.push_back(Application::getMap()->getPlayer()->getHitBoxX() - 4);
 		}
 
-		for(int i = 0; i < CCore::getMap()->getPlayer()->getYPos() + CCore::getMap()->getPlayer()->getHitBoxY(); i += 32) {
-			CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eVINE1);
-			CCore::getMap()->getEvent()->vOLDLength.push_back(16);
-			CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eVINE2);
-			CCore::getMap()->getEvent()->vOLDLength.push_back(16);
+		for(int i = 0; i < Application::getMap()->getPlayer()->getYPos() + Application::getMap()->getPlayer()->getHitBoxY(); i += 32) {
+			Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eVINE1);
+			Application::getMap()->getEvent()->vOLDLength.push_back(16);
+			Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eVINE2);
+			Application::getMap()->getEvent()->vOLDLength.push_back(16);
 		}
 
-		switch(CCore::getMap()->getCurrentLevelID()) {
+		switch(Application::getMap()->getCurrentLevelID()) {
 			case 4: {
-				CCore::getMap()->getEvent()->newMapXPos = -270*32;
-				CCore::getMap()->getEvent()->newPlayerXPos = 128;
-				CCore::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - CCore::getMap()->getPlayer()->getHitBoxY();
-				CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eVINESPAWN);
-				CCore::getMap()->getEvent()->vOLDLength.push_back(274);
+				Application::getMap()->getEvent()->newMapXPos = -270*32;
+				Application::getMap()->getEvent()->newPlayerXPos = 128;
+				Application::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - Application::getMap()->getPlayer()->getHitBoxY();
+				Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eVINESPAWN);
+				Application::getMap()->getEvent()->vOLDLength.push_back(274);
 
 				break;
 			}
 			case 8: {
-				CCore::getMap()->getEvent()->newMapXPos = -270*32;
-				CCore::getMap()->getEvent()->newPlayerXPos = 128;
-				CCore::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - CCore::getMap()->getPlayer()->getHitBoxY();
-				CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eVINESPAWN);
-				CCore::getMap()->getEvent()->vOLDLength.push_back(274);
+				Application::getMap()->getEvent()->newMapXPos = -270*32;
+				Application::getMap()->getEvent()->newPlayerXPos = 128;
+				Application::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - Application::getMap()->getPlayer()->getHitBoxY();
+				Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eVINESPAWN);
+				Application::getMap()->getEvent()->vOLDLength.push_back(274);
 
 				break;
 			}
 			case 13: {
-				CCore::getMap()->getEvent()->newMapXPos = -310*32;
-				CCore::getMap()->getEvent()->newPlayerXPos = 128;
-				CCore::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - CCore::getMap()->getPlayer()->getHitBoxY();
-				CCore::getMap()->getEvent()->newLevelType = 0;
+				Application::getMap()->getEvent()->newMapXPos = -310*32;
+				Application::getMap()->getEvent()->newPlayerXPos = 128;
+				Application::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - Application::getMap()->getPlayer()->getHitBoxY();
+				Application::getMap()->getEvent()->newLevelType = 0;
 
-				CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eVINESPAWN);
-				CCore::getMap()->getEvent()->vOLDLength.push_back(314);
+				Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eVINESPAWN);
+				Application::getMap()->getEvent()->vOLDLength.push_back(314);
 				break;
 			}
 			case 17: {
-				CCore::getMap()->getEvent()->newMapXPos = -325*32;
-				CCore::getMap()->getEvent()->newPlayerXPos = 128;
-				CCore::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - CCore::getMap()->getPlayer()->getHitBoxY();
-				CCore::getMap()->getEvent()->newLevelType = 0;
+				Application::getMap()->getEvent()->newMapXPos = -325*32;
+				Application::getMap()->getEvent()->newPlayerXPos = 128;
+				Application::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - Application::getMap()->getPlayer()->getHitBoxY();
+				Application::getMap()->getEvent()->newLevelType = 0;
 
-				CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eVINESPAWN);
-				CCore::getMap()->getEvent()->vOLDLength.push_back(329);
+				Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eVINESPAWN);
+				Application::getMap()->getEvent()->vOLDLength.push_back(329);
 				break;
 			}
 			case 21: {
-				CCore::getMap()->getEvent()->newMapXPos = -390*32;
-				CCore::getMap()->getEvent()->newPlayerXPos = 128;
-				CCore::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - CCore::getMap()->getPlayer()->getHitBoxY();
-				CCore::getMap()->getEvent()->newLevelType = 4;
+				Application::getMap()->getEvent()->newMapXPos = -390*32;
+				Application::getMap()->getEvent()->newPlayerXPos = 128;
+				Application::getMap()->getEvent()->newPlayerYPos = CCFG::GAME_HEIGHT - Application::getMap()->getPlayer()->getHitBoxY();
+				Application::getMap()->getEvent()->newLevelType = 4;
 
-				CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eVINESPAWN);
-				CCore::getMap()->getEvent()->vOLDLength.push_back(394);
+				Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eVINESPAWN);
+				Application::getMap()->getEvent()->vOLDLength.push_back(394);
 				break;
 			}
 		}
 
-		CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eNOTHING);
-		CCore::getMap()->getEvent()->vOLDLength.push_back(60);
+		Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eNOTHING);
+		Application::getMap()->getEvent()->vOLDLength.push_back(60);
 
 		for(int i = 0; i < 64; i += 32) {
-			CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->eVINE1);
-			CCore::getMap()->getEvent()->vNEWLength.push_back(16);
-			CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->eVINE2);
-			CCore::getMap()->getEvent()->vNEWLength.push_back(16);
+			Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->eVINE1);
+			Application::getMap()->getEvent()->vNEWLength.push_back(16);
+			Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->eVINE2);
+			Application::getMap()->getEvent()->vNEWLength.push_back(16);
 		}
 		
 	} else {

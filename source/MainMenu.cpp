@@ -1,13 +1,13 @@
 #include "MainMenu.h"
 #include "CFG.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
 MainMenu::MainMenu(void) {
-	this->lMO.push_back(new MenuOption("1 PLAYER GAME", 178, 276));
-	this->lMO.push_back(new MenuOption("OPTIONS", 222, 308));
-	this->lMO.push_back(new MenuOption("ABOUT", 237, 340));
+	this->lMO.push_back(new MenuOption("START", 178, 276));
+	this->lMO.push_back(new MenuOption("OPTIONS", 178, 308));
+	this->lMO.push_back(new MenuOption("ABOUT", 178, 340));
 
 	this->numOfMenuOptions = lMO.size();
 
@@ -36,8 +36,8 @@ void MainMenu::Update() {
 void MainMenu::Draw(SDL_Renderer* rR) {
 	CCFG::getSMBLOGO()->Draw(rR, 80, 48);
 	Menu::Draw(rR);
-	CCFG::getText()->Draw(rR, "WWW.LUKASZJAKOWSKI.PL", 4, CCFG::GAME_HEIGHT - 4 - 8, 8, 0, 0, 0);
-	CCFG::getText()->Draw(rR, "WWW.LUKASZJAKOWSKI.PL", 5, CCFG::GAME_HEIGHT - 5 - 8, 8, 255, 255, 255);
+	CCFG::getText()->Draw(rR, "MOBTGZHANG", 4, CCFG::GAME_HEIGHT - 4 - 8, 8, 0, 0, 0);
+	CCFG::getText()->Draw(rR, "MOBTGZHANG", 5, CCFG::GAME_HEIGHT - 5 - 8, 8, 255, 255, 255);
 
 	if(selectWorld) {
 		SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_BLEND);
@@ -75,7 +75,7 @@ void MainMenu::Draw(SDL_Renderer* rR) {
 		}
 
 		SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_NONE);
-		CCore::getMap()->setBackgroundColor(rR);
+		Application::getMap()->setBackgroundColor(rR);
 	}
 }
 
@@ -88,11 +88,11 @@ void MainMenu::enter() {
 				selectWorld = true;
 			} else {
 				CCFG::getMM()->getLoadingMenu()->updateTime();
-				CCore::getMap()->resetGameData();
-				CCore::getMap()->setCurrentLevelID(activeWorldID * 4 + activeSecondWorldID);
+				Application::getMap()->resetGameData();
+				Application::getMap()->setCurrentLevelID(activeWorldID * 4 + activeSecondWorldID);
 				CCFG::getMM()->setViewID(CCFG::getMM()->eGameLoading);
 				CCFG::getMM()->getLoadingMenu()->loadingType = true;
-				CCore::getMap()->setSpawnPointID(0);
+				Application::getMap()->setSpawnPointID(0);
 				selectWorld = false;
 			}
 			break;

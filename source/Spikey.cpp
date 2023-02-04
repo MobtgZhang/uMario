@@ -1,5 +1,5 @@
 #include "Spikey.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -33,9 +33,9 @@ void Spikey::Update() {
 
 void Spikey::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(minionState != -2) {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos - 4, !moveDirection);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos - 4, !moveDirection);
 	} else {
-		iIMG->DrawVert(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + 2);
+		iIMG->DrawVert(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + 2);
 	}
 }
 
@@ -43,7 +43,7 @@ void Spikey::minionPhysics() {
 	if (jumpState == 1) {
 		physicsState1();
 	} else {
-		if (!CCore::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !CCore::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true) && !onAnotherMinion) {
+		if (!Application::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !Application::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true) && !onAnotherMinion) {
 			physicsState2();
 		} else {
 			jumpState = 0;
@@ -51,7 +51,7 @@ void Spikey::minionPhysics() {
 
 			if(iBlockID == 52) {
 				iBlockID = 51;
-				moveDirection = fXPos + iHitBoxX/2 > CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()/2;
+				moveDirection = fXPos + iHitBoxX/2 > Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()/2;
 				moveSpeed = 1;
 			}
 		}
@@ -61,9 +61,9 @@ void Spikey::minionPhysics() {
 /* ******************************************** */
 
 void Spikey::collisionWithPlayer(bool TOP) {
-	if(CCore::getMap()->getPlayer()->getStarEffect()) {
+	if(Application::getMap()->getPlayer()->getStarEffect()) {
 		setMinionState(-2);
 	} else {
-		CCore::getMap()->playerDeath(true, false);
+		Application::getMap()->playerDeath(true, false);
 	}
 }

@@ -1,7 +1,7 @@
 #include "BulletBillSpawner.h"
-#include "Core.h"
-#include "stdlib.h"
-#include "time.h"
+#include "Application.h"
+#include <cstdlib>
+#include <ctime>
 
 /* ******************************************** */
 
@@ -32,18 +32,18 @@ BulletBillSpawner::~BulletBillSpawner(void) {
 void BulletBillSpawner::Update() {
 	if(nextBulletBillFrameID <= 0) {
 		if(minionState == 0) {
-			if(fXPos > -CCore::getMap()->getXPos() - 64 && fXPos < -CCore::getMap()->getXPos() + CCFG::GAME_WIDTH + 64 + iHitBoxX) {
-				if(!(CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()/2 > fXPos - 96 && CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()/2 < fXPos + 96)) {
-					CCore::getMap()->addBulletBill((int)fXPos, (int)fYPos - 14, true, minionState);
+			if(fXPos > -Application::getMap()->getXPos() - 64 && fXPos < -Application::getMap()->getXPos() + CCFG::GAME_WIDTH + 64 + iHitBoxX) {
+				if(!(Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()/2 > fXPos - 96 && Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()/2 < fXPos + 96)) {
+					Application::getMap()->addBulletBill((int)fXPos, (int)fYPos - 14, true, minionState);
 					nextBulletBillFrameID = 145 + rand()%145;
 				}
 			}
 		} else {
-			CCore::getMap()->addBulletBill((int)(-CCore::getMap()->getXPos() + CCFG::GAME_WIDTH + iHitBoxX * 2), (int)fYPos - rand()%9*32 - 16, true, minionState);
+			Application::getMap()->addBulletBill((int)(-Application::getMap()->getXPos() + CCFG::GAME_WIDTH + iHitBoxX * 2), (int)fYPos - rand()%9*32 - 16, true, minionState);
 			nextBulletBillFrameID = 80 + rand()%96;
 		}
 	} else {
-		if(!(CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()/2 > fXPos - 96 && CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()/2 < fXPos + 96)) {
+		if(!(Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()/2 > fXPos - 96 && Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()/2 < fXPos + 96)) {
 			--nextBulletBillFrameID;
 		}
 	}

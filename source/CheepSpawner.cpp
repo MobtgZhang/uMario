@@ -1,7 +1,7 @@
 #include "CheepSpawner.h"
-#include "Core.h"
-#include "stdlib.h"
-#include "time.h"
+#include "Application.h"
+#include <cstdlib>
+#include <ctime>
 
 /* ******************************************** */
 
@@ -40,8 +40,8 @@ void CheepSpawner::minionPhysics() { }
 /* ******************************************** */
 
 void CheepSpawner::spawnCheep() {
-	if(CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() > fXPos && CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() < iXEnd) {
-		CCore::getMap()->addCheep((int)(-CCore::getMap()->getXPos() + 64 + rand()%(CCFG::GAME_WIDTH - 128)), CCFG::GAME_HEIGHT - 4, 2, 2 + rand() % 32, !(rand()%4 == 0));
+	if(Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() > fXPos && Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() < iXEnd) {
+		Application::getMap()->addCheep((int)(-Application::getMap()->getXPos() + 64 + rand()%(CCFG::GAME_WIDTH - 128)), CCFG::GAME_HEIGHT - 4, 2, 2 + rand() % 32, !(rand()%4 == 0));
 	} else {
 		nextCheep();
 	}

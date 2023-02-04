@@ -1,7 +1,7 @@
 #include "HammerBro.h"
-#include "Core.h"
-#include "stdlib.h"
-#include "time.h"
+#include "Application.h"
+#include <cstdlib>
+#include <ctime>
 
 /* ******************************************** */
 
@@ -17,7 +17,7 @@ HammerBro::HammerBro(int iXPos, int iYPos) {
 	this->iHitBoxX = 32;
 	this->iHitBoxY = 48;
 
-	this->iBlockID = CCore::getMap()->getLevelType() == 0 || CCore::getMap()->getLevelType() == 4 ? 43 : 45;
+	this->iBlockID = Application::getMap()->getLevelType() == 0 || Application::getMap()->getLevelType() == 4 ? 43 : 45;
 
 	this->moveDistance = 16.0f;
 
@@ -41,7 +41,7 @@ HammerBro::~HammerBro(void) {
 
 void HammerBro::Update() {
 	if(minionState != -2) {
-		moveDirection = !(CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX() / 2 > fXPos + iHitBoxX/2);
+		moveDirection = !(Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX() / 2 > fXPos + iHitBoxX/2);
 
 		if(moveDistance > 0) {
 			moveDistance -= 0.5f;
@@ -50,11 +50,11 @@ void HammerBro::Update() {
 				fXPos += moveDIR ? -0.5f : 0.5f;
 			}
 			if(moveDIR) {
-				if (!CCore::getMap()->checkCollisionLB((int)fXPos - moveSpeed, (int)fYPos - 2, iHitBoxY, true) && !CCore::getMap()->checkCollisionLT((int)fXPos - moveSpeed, (int)fYPos + 2, true)) {
+				if (!Application::getMap()->checkCollisionLB((int)fXPos - moveSpeed, (int)fYPos - 2, iHitBoxY, true) && !Application::getMap()->checkCollisionLT((int)fXPos - moveSpeed, (int)fYPos + 2, true)) {
 					fXPos += -0.5f;
 				}
 			} else {
-				if (!CCore::getMap()->checkCollisionRB((int)fXPos + moveSpeed, (int)fYPos - 2, iHitBoxX, iHitBoxY, true) && !CCore::getMap()->checkCollisionRT((int)fXPos + moveSpeed, (int)fYPos + 2, iHitBoxX, true)) {
+				if (!Application::getMap()->checkCollisionRB((int)fXPos + moveSpeed, (int)fYPos - 2, iHitBoxX, iHitBoxY, true) && !Application::getMap()->checkCollisionRT((int)fXPos + moveSpeed, (int)fYPos + 2, iHitBoxX, true)) {
 					fXPos += 0.5f;
 				}
 			}
@@ -93,14 +93,14 @@ void HammerBro::Update() {
 		}
 
 		if(nextHammerFrameID < 15) {
-			this->iBlockID = CCore::getMap()->getLevelType() == 0 || CCore::getMap()->getLevelType() == 4 ? 44 : 46;
+			this->iBlockID = Application::getMap()->getLevelType() == 0 || Application::getMap()->getLevelType() == 4 ? 44 : 46;
 		} else {
-			this->iBlockID = CCore::getMap()->getLevelType() == 0 || CCore::getMap()->getLevelType() == 4 ? 43 : 45;
+			this->iBlockID = Application::getMap()->getLevelType() == 0 || Application::getMap()->getLevelType() == 4 ? 43 : 45;
 		}
 
 		if(nextHammerFrameID < 0) {
 			nextHammerFrameID = rand()%95 + 95;
-			CCore::getMap()->addHammer((int)(fXPos + iHitBoxX/2), (int)(fYPos - 18), !moveDirection);
+			Application::getMap()->addHammer((int)(fXPos + iHitBoxX/2), (int)(fYPos - 18), !moveDirection);
 			if(hammerID < 2 - rand()%2) {
 				++hammerID;
 				nextHammerFrameID /= 4;
@@ -117,9 +117,9 @@ void HammerBro::Update() {
 
 void HammerBro::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(minionState != -2) {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos - 18, moveDirection);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos - 18, moveDirection);
 	} else {
-		iIMG->DrawVert(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos - 18);
+		iIMG->DrawVert(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos - 18);
 	}
 }
 
@@ -127,7 +127,7 @@ void HammerBro::minionPhysics() {
 	if (jumpState == 1) {
 		
 	} else {
-		if (!CCore::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !CCore::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true)) {
+		if (!Application::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !Application::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true)) {
 			Minion::physicsState2();
 		} else {
 			jumpState = 0;
@@ -138,10 +138,10 @@ void HammerBro::minionPhysics() {
 /* ******************************************** */
 
 void HammerBro::collisionWithPlayer(bool TOP) {
-	if(CCore::getMap()->getPlayer()->getStarEffect() || TOP) {
+	if(Application::getMap()->getPlayer()->getStarEffect() || TOP) {
 		setMinionState(-2);
 	} else {
-		CCore::getMap()->playerDeath(true, false);
+		Application::getMap()->playerDeath(true, false);
 	}
 }
 

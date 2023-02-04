@@ -1,12 +1,8 @@
-/************************
- * @author £ukasz Jakowski
- * @since  20.04.2014 14:32
- * 
- ************************/
+
 
 #include "Points.h"
 #include "CFG.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -50,7 +46,7 @@ void Points::Update() {
 }
 
 void Points::Draw(SDL_Renderer* rR) {
-	CCFG::getText()->Draw(rR, sText, iXPos + (int)CCore::getMap()->getXPos(), iYPos, iW, iH);
+	CCFG::getText()->Draw(rR, sText, iXPos + (int)Application::getMap()->getXPos(), iYPos, iW, iH);
 }
 
 /* ******************************************** */

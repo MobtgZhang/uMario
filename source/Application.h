@@ -3,7 +3,7 @@
 
 #include "Map.h"
 
-class CCore
+class Application
 {
 private:
 	SDL_Window* window;
@@ -38,8 +38,8 @@ private:
 	void InputPlayer();
 	void InputMenu();
 public:
-	CCore(void);
-	~CCore(void);
+	Application(void);
+	~Application(void);
 
 	static bool quitGame;
 

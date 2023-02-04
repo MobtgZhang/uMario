@@ -1,5 +1,5 @@
 #include "PlayerFireBall.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -59,7 +59,7 @@ void PlayerFireBall::Update() {
 				jumpState = 2;
 			}
 		} else {
-			if (!CCore::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !CCore::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true) && !onAnotherMinion) {
+			if (!Application::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !Application::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true) && !onAnotherMinion) {
 				updateYPos(1);
 
 				jumpState = 2;
@@ -79,16 +79,16 @@ void PlayerFireBall::Update() {
 
 void PlayerFireBall::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(!bDestroy) {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos, !moveDirection);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos, !moveDirection);
 	} else {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos() - (moveDirection ? 16 : 0), (int)fYPos - 8, !moveDirection);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos() - (moveDirection ? 16 : 0), (int)fYPos - 8, !moveDirection);
 	}
 }
 
 void PlayerFireBall::updateXPos() {
 	// ----- LEFT
 	if (moveDirection) {
-		if (CCore::getMap()->checkCollisionLB((int)fXPos - moveSpeed, (int)fYPos - 2, iHitBoxY, true) || CCore::getMap()->checkCollisionLT((int)fXPos - moveSpeed, (int)fYPos + 2, true)) {
+		if (Application::getMap()->checkCollisionLB((int)fXPos - moveSpeed, (int)fYPos - 2, iHitBoxY, true) || Application::getMap()->checkCollisionLT((int)fXPos - moveSpeed, (int)fYPos + 2, true)) {
 			bDestroy = true;
 			collisionOnlyWithPlayer = true;
 			CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cBLOCKHIT);
@@ -98,7 +98,7 @@ void PlayerFireBall::updateXPos() {
 	}
 	// ----- RIGHT
 	else {
-		if (CCore::getMap()->checkCollisionRB((int)fXPos + moveSpeed, (int)fYPos - 2, iHitBoxX, iHitBoxY, true) || CCore::getMap()->checkCollisionRT((int)fXPos + moveSpeed, (int)fYPos + 2, iHitBoxX, true)) {
+		if (Application::getMap()->checkCollisionRB((int)fXPos + moveSpeed, (int)fYPos - 2, iHitBoxX, iHitBoxY, true) || Application::getMap()->checkCollisionRT((int)fXPos + moveSpeed, (int)fYPos + 2, iHitBoxX, true)) {
 			bDestroy = true;
 			collisionOnlyWithPlayer = true;
 			CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cBLOCKHIT);

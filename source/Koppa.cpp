@@ -1,5 +1,5 @@
 #include "Koppa.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -78,7 +78,7 @@ void Koppa::minionPhysics() {
 			Minion::physicsState1();
 		}
 	} else {
-		if (!CCore::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !CCore::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true) && !onAnotherMinion) {
+		if (!Application::getMap()->checkCollisionLB((int)fXPos + 2, (int)fYPos + 2, iHitBoxY, true) && !Application::getMap()->checkCollisionRB((int)fXPos - 2, (int)fYPos + 2, iHitBoxX, iHitBoxY, true) && !onAnotherMinion) {
 			if(minionState == 0) {
 				updateYPos(2);
 
@@ -116,19 +116,19 @@ void Koppa::Update() {
 
 void Koppa::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(minionState != -2) {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + (minionState <= 1 ? -14 : 2), !moveDirection);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + (minionState <= 1 ? -14 : 2), !moveDirection);
 	} else {
-		iIMG->DrawVert(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + 2);
+		iIMG->DrawVert(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + 2);
 	}
 }
 
 void Koppa::updateXPos() {
 	// ----- LEFT
 	if (moveDirection) {
-		if (CCore::getMap()->checkCollisionLB((int)fXPos - moveSpeed, (int)fYPos - 2, iHitBoxY, true) || CCore::getMap()->checkCollisionLT((int)fXPos - moveSpeed, (int)fYPos + 2, true)) {
+		if (Application::getMap()->checkCollisionLB((int)fXPos - moveSpeed, (int)fYPos - 2, iHitBoxY, true) || Application::getMap()->checkCollisionLT((int)fXPos - moveSpeed, (int)fYPos + 2, true)) {
 			moveDirection = !moveDirection;
 		} else {
-			bool LB = CCore::getMap()->checkCollisionLB((int)fXPos + iHitBoxX/2, (int)fYPos, iHitBoxY + 2, false), RB = CCore::getMap()->checkCollisionRB((int)fXPos + iHitBoxX/2, (int)fYPos, iHitBoxX, iHitBoxY + 2, false);
+			bool LB = Application::getMap()->checkCollisionLB((int)fXPos + iHitBoxX/2, (int)fYPos, iHitBoxY + 2, false), RB = Application::getMap()->checkCollisionRB((int)fXPos + iHitBoxX/2, (int)fYPos, iHitBoxX, iHitBoxY + 2, false);
 			if((minionState == 1 && iBlockID != 4) && ((!LB && RB))) {
 				moveDirection = !moveDirection;
 				fXPos += moveSpeed;
@@ -139,10 +139,10 @@ void Koppa::updateXPos() {
 	}
 	// ----- RIGHT
 	else {
-		if (CCore::getMap()->checkCollisionRB((int)fXPos + moveSpeed, (int)fYPos - 2, iHitBoxX, iHitBoxY, true) || CCore::getMap()->checkCollisionRT((int)fXPos + moveSpeed, (int)fYPos + 2, iHitBoxX, true)) {
+		if (Application::getMap()->checkCollisionRB((int)fXPos + moveSpeed, (int)fYPos - 2, iHitBoxX, iHitBoxY, true) || Application::getMap()->checkCollisionRT((int)fXPos + moveSpeed, (int)fYPos + 2, iHitBoxX, true)) {
 			moveDirection = !moveDirection;
 		} else {
-			bool LB = CCore::getMap()->checkCollisionLB((int)fXPos - iHitBoxX/2, (int)fYPos, iHitBoxY + 2, false), RB = CCore::getMap()->checkCollisionRB((int)fXPos - iHitBoxX/2, (int)fYPos, iHitBoxX, iHitBoxY + 2, false);
+			bool LB = Application::getMap()->checkCollisionLB((int)fXPos - iHitBoxX/2, (int)fYPos, iHitBoxY + 2, false), RB = Application::getMap()->checkCollisionRB((int)fXPos - iHitBoxX/2, (int)fYPos, iHitBoxX, iHitBoxY + 2, false);
 			if((minionState == 1 && iBlockID != 4) && ((LB && !RB))) {
 				moveDirection = !moveDirection;
 				fXPos -= moveSpeed;
@@ -160,30 +160,30 @@ void Koppa::updateXPos() {
 /* ******************************************** */
 
 void Koppa::collisionWithPlayer(bool TOP) {
-	if(CCore::getMap()->getPlayer()->getStarEffect()) {
+	if(Application::getMap()->getPlayer()->getStarEffect()) {
 		setMinionState(-2);
 	} else if(TOP) {
 		if(minionState == 0 || minionState == 3) {
 			minionState = 1;
 			setMinion();
-			CCore::getMap()->getPlayer()->resetJump();
-			CCore::getMap()->getPlayer()->startJump(1);
-			CCore::getMap()->getPlayer()->setYPos((float)CCore::getMap()->getPlayer()->getYPos() - 4);
+			Application::getMap()->getPlayer()->resetJump();
+			Application::getMap()->getPlayer()->startJump(1);
+			Application::getMap()->getPlayer()->setYPos((float)Application::getMap()->getPlayer()->getYPos() - 4);
 			points(100);
 			CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cSTOMP);
 		} else if(minionState == 1) {
 			minionState = 2;
 			setMinion();
-			CCore::getMap()->getPlayer()->resetJump();
-			CCore::getMap()->getPlayer()->startJump(1);
-			CCore::getMap()->getPlayer()->setYPos((float)CCore::getMap()->getPlayer()->getYPos() - 4);
+			Application::getMap()->getPlayer()->resetJump();
+			Application::getMap()->getPlayer()->startJump(1);
+			Application::getMap()->getPlayer()->setYPos((float)Application::getMap()->getPlayer()->getYPos() - 4);
 			points(100);
 			CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cSTOMP);
 		} else {
 			if(moveSpeed > 0) {
 				moveSpeed = 0;
 			} else {
-				if((fXPos + iHitBoxX) / 2 < (CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()) / 2) {
+				if((fXPos + iHitBoxX) / 2 < (Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()) / 2) {
 					moveDirection = true;
 				} else {
 					moveDirection = false;
@@ -192,26 +192,26 @@ void Koppa::collisionWithPlayer(bool TOP) {
 				moveSpeed = 6;
 			}
 
-			CCore::getMap()->getPlayer()->setYPos((float)CCore::getMap()->getPlayer()->getYPos() - 4);
-			CCore::getMap()->getPlayer()->resetJump();
-			CCore::getMap()->getPlayer()->startJump(1);
+			Application::getMap()->getPlayer()->setYPos((float)Application::getMap()->getPlayer()->getYPos() - 4);
+			Application::getMap()->getPlayer()->resetJump();
+			Application::getMap()->getPlayer()->startJump(1);
 			points(100);
 			CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cSTOMP);
 		}
 	} else {
 		if(minionState == 2) {
 			if(moveSpeed == 0) {
-				//moveDirection = !CCore::getMap()->getPlayer()->getMoveDirection();
-				moveDirection = (fXPos + iHitBoxX/2 < CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()/2);
-				if(moveDirection) fXPos -= CCore::getMap()->getPlayer()->getMoveSpeed() + 1;
-				else fXPos += CCore::getMap()->getPlayer()->getMoveSpeed() + 1;
+				//moveDirection = !Application::getMap()->getPlayer()->getMoveDirection();
+				moveDirection = (fXPos + iHitBoxX/2 < Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()/2);
+				if(moveDirection) fXPos -= Application::getMap()->getPlayer()->getMoveSpeed() + 1;
+				else fXPos += Application::getMap()->getPlayer()->getMoveSpeed() + 1;
 				moveSpeed = 6;
 				CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cSTOMP);
 			} else {
-				CCore::getMap()->playerDeath(true, false);
+				Application::getMap()->playerDeath(true, false);
 			}
 		} else {
-			CCore::getMap()->playerDeath(true, false);
+			Application::getMap()->playerDeath(true, false);
 		}
 	}
 }

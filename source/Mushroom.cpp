@@ -1,5 +1,5 @@
 #include "Mushroom.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -7,7 +7,7 @@ Mushroom::Mushroom(int iXPos, int fYPos, bool powerUP, int iX, int iY) {
 	this->fXPos = (float)iXPos;
 	this->fYPos = (float)fYPos - 2;
 
-	this->iBlockID = powerUP ? 2 : CCore::getMap()->getLevelType() == 1 ? 25 : 3;
+	this->iBlockID = powerUP ? 2 : Application::getMap()->getLevelType() == 1 ? 25 : 3;
 	this->moveSpeed = 2;
 	this->inSpawnState = true;
 	this->minionSpawned = true;
@@ -56,9 +56,9 @@ bool Mushroom::updateMinion() {
 
 void Mushroom::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(minionState >= 0) {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + 2, false);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + 2, false);
 		if (inSpawnState) {
-			CCore::getMap()->getBlock(CCore::getMap()->getLevelType() == 0 || CCore::getMap()->getLevelType() == 4 ? 9 : 56)->getSprite()->getTexture()->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + (32 - inSpawnY) - CCore::getMap()->getMapBlock(iX, iY)->getYPos() + 2, false);
+			Application::getMap()->getBlock(Application::getMap()->getLevelType() == 0 || Application::getMap()->getLevelType() == 4 ? 9 : 56)->getSprite()->getTexture()->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + (32 - inSpawnY) - Application::getMap()->getMapBlock(iX, iY)->getYPos() + 2, false);
 		}
 	}
 }
@@ -68,10 +68,10 @@ void Mushroom::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 void Mushroom::collisionWithPlayer(bool TOP) {
 	if(!inSpawnState && minionState == 0) {
 		if(powerUP) {
-			CCore::getMap()->getPlayer()->setPowerLVL(CCore::getMap()->getPlayer()->getPowerLVL() + 1);
+			Application::getMap()->getPlayer()->setPowerLVL(Application::getMap()->getPlayer()->getPowerLVL() + 1);
 		} else {
-			CCore::getMap()->getPlayer()->setNumOfLives(CCore::getMap()->getPlayer()->getNumOfLives() + 1);
-			CCore::getMap()->addPoints((int)fXPos, (int)fYPos, "1UP", 10, 14);
+			Application::getMap()->getPlayer()->setNumOfLives(Application::getMap()->getPlayer()->getNumOfLives() + 1);
+			Application::getMap()->addPoints((int)fXPos, (int)fYPos, "1UP", 10, 14);
 			CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cONEUP);
 		}
 		minionState = -1;

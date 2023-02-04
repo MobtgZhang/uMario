@@ -1,11 +1,5 @@
-/************************
- * @author £ukasz Jakowski
- * @since  20.04.2014 14:32
- * 
- ************************/
-
 #include "Coin.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -50,7 +44,7 @@ void Coin::Update() {
 }
 
 void Coin::Draw(SDL_Renderer* rR) {
-	CCore::getMap()->getBlock(50)->getSprite()->getTexture(iSpriteID)->Draw(rR, iXPos + (int)CCore::getMap()->getXPos(), iYPos);
+	Application::getMap()->getBlock(50)->getSprite()->getTexture(iSpriteID)->Draw(rR, iXPos + (int)Application::getMap()->getXPos(), iYPos);
 }
 
 /* ******************************************** */

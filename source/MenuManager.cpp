@@ -1,5 +1,5 @@
 #include "MenuManager.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -29,20 +29,20 @@ void MenuManager::Update() {
 	switch(currentGameState) {
 		case eMainMenu:
 			oMainMenu->Update();
-			CCore::getMap()->UpdateBlocks();
+			Application::getMap()->UpdateBlocks();
 			break;
 		case eGameLoading:
 			oLoadingMenu->Update();
 			break;
 		case eGame:
-			CCore::getMap()->Update();
-			CCore::getMap()->UpdateMinionsCollisions();
+			Application::getMap()->Update();
+			Application::getMap()->UpdateMinionsCollisions();
 			//oLE->Update();
 			break;
 		case eAbout:
-			CCore::getMap()->UpdateMinions();
-			CCore::getMap()->UpdateMinionBlokcs();
-			CCore::getMap()->UpdateBlocks();
+			Application::getMap()->UpdateMinions();
+			Application::getMap()->UpdateMinionBlokcs();
+			Application::getMap()->UpdateBlocks();
 			oAboutMenu->Update();
 			break;
 		case eOptions:
@@ -57,36 +57,36 @@ void MenuManager::Update() {
 void MenuManager::Draw(SDL_Renderer* rR) {
 	switch(currentGameState) {
 		case eMainMenu:
-			CCore::getMap()->DrawMap(rR);
-			CCore::getMap()->getPlayer()->Draw(rR);
-			CCore::getMap()->DrawGameLayout(rR);
+			Application::getMap()->DrawMap(rR);
+			Application::getMap()->getPlayer()->Draw(rR);
+			Application::getMap()->DrawGameLayout(rR);
 			oMainMenu->Draw(rR);
 			break;
 		case eGameLoading:
 			oLoadingMenu->Draw(rR);
 			break;
 		case eGame:
-			CCore::getMap()->Draw(rR);
+			Application::getMap()->Draw(rR);
 			//oLE->Draw(rR);
 			break;
 		case eAbout:
-			CCore::getMap()->DrawMap(rR);
-			//CCore::getMap()->getPlayer()->Draw(rR);
-			CCore::getMap()->DrawMinions(rR);
+			Application::getMap()->DrawMap(rR);
+			//Application::getMap()->getPlayer()->Draw(rR);
+			Application::getMap()->DrawMinions(rR);
 			oAboutMenu->Draw(rR);
 			break;
 		case eOptions:
-			CCore::getMap()->DrawMap(rR);
-			CCore::getMap()->DrawMinions(rR);
-			CCore::getMap()->getPlayer()->Draw(rR);
-			CCore::getMap()->DrawGameLayout(rR);
+			Application::getMap()->DrawMap(rR);
+			Application::getMap()->DrawMinions(rR);
+			Application::getMap()->getPlayer()->Draw(rR);
+			Application::getMap()->DrawGameLayout(rR);
 			oOptionsMenu->Draw(rR);
 			break;
 		case ePasue:
-			CCore::getMap()->DrawMap(rR);
-			CCore::getMap()->DrawMinions(rR);
-			CCore::getMap()->getPlayer()->Draw(rR);
-			CCore::getMap()->DrawGameLayout(rR);
+			Application::getMap()->DrawMap(rR);
+			Application::getMap()->DrawMinions(rR);
+			Application::getMap()->getPlayer()->Draw(rR);
+			Application::getMap()->DrawGameLayout(rR);
 			oPauseMenu->Draw(rR);
 			break;
 	}
@@ -106,13 +106,13 @@ void MenuManager::Draw(SDL_Renderer* rR) {
 void MenuManager::setBackgroundColor(SDL_Renderer* rR) {
 	switch(currentGameState) {
 		case eMainMenu:
-			CCore::getMap()->setBackgroundColor(rR);
+			Application::getMap()->setBackgroundColor(rR);
 			break;
 		case eGameLoading:
 			SDL_SetRenderDrawColor(rR, 0, 0, 0, 255);
 			break;
 		case eGame:
-			CCore::getMap()->setBackgroundColor(rR);
+			Application::getMap()->setBackgroundColor(rR);
 			break;
 		case eAbout:
 			oAboutMenu->setBackgroundColor(rR);
@@ -128,7 +128,7 @@ void MenuManager::enter() {
 			oMainMenu->enter();
 			break;
 		case eGame:
-			CCore::getMap()->setDrawLines(!CCore::getMap()->getDrawLines());
+			Application::getMap()->setDrawLines(!Application::getMap()->getDrawLines());
 			break;
 		case eAbout:
 			oAboutMenu->enter();

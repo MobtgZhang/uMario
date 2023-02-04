@@ -1,5 +1,5 @@
 #include "Flower.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -47,9 +47,9 @@ bool Flower::updateMinion() {
 
 void Flower::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 	if(minionState >= 0) {
-		iIMG->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + 2, false);
+		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + 2, false);
 		if (inSpawnState) {
-			CCore::getMap()->getBlock(CCore::getMap()->getLevelType() == 0 || CCore::getMap()->getLevelType() == 4 ? 9 : 56)->getSprite()->getTexture()->Draw(rR, (int)fXPos + (int)CCore::getMap()->getXPos(), (int)fYPos + (32 - inSpawnY) - CCore::getMap()->getMapBlock(iX, iY)->getYPos() + 2, false);
+			Application::getMap()->getBlock(Application::getMap()->getLevelType() == 0 || Application::getMap()->getLevelType() == 4 ? 9 : 56)->getSprite()->getTexture()->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + (32 - inSpawnY) - Application::getMap()->getMapBlock(iX, iY)->getYPos() + 2, false);
 		}
 	}
 }
@@ -58,7 +58,7 @@ void Flower::Draw(SDL_Renderer* rR, CIMG* iIMG) {
 
 void Flower::collisionWithPlayer(bool TOP) {
 	if(!inSpawnState && minionState >= 0) {
-		CCore::getMap()->getPlayer()->setPowerLVL(CCore::getMap()->getPlayer()->getPowerLVL() + 1);
+		Application::getMap()->getPlayer()->setPowerLVL(Application::getMap()->getPlayer()->getPowerLVL() + 1);
 		minionState = -1;
 	}
 }

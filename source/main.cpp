@@ -1,11 +1,11 @@
 #include "header.h"
-#include "Core.h"
+#include "Application.h"
 
 int main(int argc, char *argv[])
 {
-	CCore oCore;
+	Application app;
 	
-	oCore.mainLoop();
+	app.mainLoop();
 
 	return 0;
 }

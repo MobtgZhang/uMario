@@ -1,5 +1,5 @@
 #include "Pipe.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -33,11 +33,11 @@ Pipe::~Pipe(void) {
 
 void Pipe::checkUse() {
 	if(iType == 0 || iType == 2) {
-		if(CCore::getMap()->getPlayer()->getSquat() && -(int)CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getXPos() >= iLX * 32 + 4 && -(int)CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX() < (iRX + 1) * 32 - 4) {
+		if(Application::getMap()->getPlayer()->getSquat() && -(int)Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getXPos() >= iLX * 32 + 4 && -(int)Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX() < (iRX + 1) * 32 - 4) {
 			setEvent();
 		}
 	} else {
-		if(!CCore::getMap()->getPlayer()->getSquat() && CCore::getMap()->getBlockIDX(-(int)CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX() / 2 + 2) == iRX - 1 && CCore::getMap()->getBlockIDY(CCore::getMap()->getPlayer()->getYPos() + CCore::getMap()->getPlayer()->getHitBoxY() + 2) == iRY - 1) {
+		if(!Application::getMap()->getPlayer()->getSquat() && Application::getMap()->getBlockIDX(-(int)Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX() / 2 + 2) == iRX - 1 && Application::getMap()->getBlockIDY(Application::getMap()->getPlayer()->getYPos() + Application::getMap()->getPlayer()->getHitBoxY() + 2) == iRY - 1) {
 			setEvent();
 		}
 	}
@@ -46,101 +46,101 @@ void Pipe::checkUse() {
 /* ******************************************** */
 
 void Pipe::setEvent() {
-	CCore::getMap()->getEvent()->resetData();
-	CCore::getMap()->getPlayer()->stopMove();
-	CCore::getMap()->getPlayer()->resetJump();
+	Application::getMap()->getEvent()->resetData();
+	Application::getMap()->getPlayer()->stopMove();
+	Application::getMap()->getPlayer()->resetJump();
 
 	CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cPIPE);
 
-	CCore::getMap()->getEvent()->eventTypeID = CCore::getMap()->getEvent()->eNormal;
+	Application::getMap()->getEvent()->eventTypeID = Application::getMap()->getEvent()->eNormal;
 
-	CCore::getMap()->getEvent()->newCurrentLevel = newCurrentLevel;
-	CCore::getMap()->getEvent()->newLevelType = newLevelType;
-	CCore::getMap()->getEvent()->newMoveMap = newMoveMap;
+	Application::getMap()->getEvent()->newCurrentLevel = newCurrentLevel;
+	Application::getMap()->getEvent()->newLevelType = newLevelType;
+	Application::getMap()->getEvent()->newMoveMap = newMoveMap;
 
-	CCore::getMap()->getEvent()->iSpeed = iSpeed;
-	CCore::getMap()->getEvent()->iDelay = iDelay;
+	Application::getMap()->getEvent()->iSpeed = iSpeed;
+	Application::getMap()->getEvent()->iDelay = iDelay;
 
-	CCore::getMap()->getEvent()->inEvent = false;
+	Application::getMap()->getEvent()->inEvent = false;
 
-	CCore::getMap()->getEvent()->newUnderWater = newUnderWater;
+	Application::getMap()->getEvent()->newUnderWater = newUnderWater;
 
-	CCore::getMap()->getEvent()->newMapXPos = (newPlayerPosX <= 32 * 2 ? 0 : -(newPlayerPosX - 32 * 2));
-	CCore::getMap()->getEvent()->newPlayerXPos = (newPlayerPosX <= 32 * 2 ? newPlayerPosX : 32 * 2);
-	CCore::getMap()->getEvent()->newPlayerYPos = newPlayerPosY;
+	Application::getMap()->getEvent()->newMapXPos = (newPlayerPosX <= 32 * 2 ? 0 : -(newPlayerPosX - 32 * 2));
+	Application::getMap()->getEvent()->newPlayerXPos = (newPlayerPosX <= 32 * 2 ? newPlayerPosX : 32 * 2);
+	Application::getMap()->getEvent()->newPlayerYPos = newPlayerPosY;
 
 	if(iType == 0) { // VERTICAL -> NONE
-		CCore::getMap()->getEvent()->newPlayerYPos -= CCore::getMap()->getPlayer()->getPowerLVL() > 0 ? 32 : 0;
-		CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eBOT);
-		CCore::getMap()->getEvent()->vOLDLength.push_back(CCore::getMap()->getPlayer()->getHitBoxY());
+		Application::getMap()->getEvent()->newPlayerYPos -= Application::getMap()->getPlayer()->getPowerLVL() > 0 ? 32 : 0;
+		Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eBOT);
+		Application::getMap()->getEvent()->vOLDLength.push_back(Application::getMap()->getPlayer()->getHitBoxY());
 
-		CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eNOTHING);
-		CCore::getMap()->getEvent()->vOLDLength.push_back(35);
+		Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eNOTHING);
+		Application::getMap()->getEvent()->vOLDLength.push_back(35);
 
 		for(int i = 0; i < 3; i++) {
-			CCore::getMap()->getEvent()->reDrawX.push_back(iLX);
-			CCore::getMap()->getEvent()->reDrawY.push_back(iLY - i);
-			CCore::getMap()->getEvent()->reDrawX.push_back(iRX);
-			CCore::getMap()->getEvent()->reDrawY.push_back(iRY - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(iLX);
+			Application::getMap()->getEvent()->reDrawY.push_back(iLY - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(iRX);
+			Application::getMap()->getEvent()->reDrawY.push_back(iRY - i);
 		}
 	} else if(iType == 1) {
-		CCore::getMap()->getEvent()->newPlayerXPos += 32 - CCore::getMap()->getPlayer()->getHitBoxX() / 2;
+		Application::getMap()->getEvent()->newPlayerXPos += 32 - Application::getMap()->getPlayer()->getHitBoxX() / 2;
 
-		CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eRIGHT);
-		CCore::getMap()->getEvent()->vOLDLength.push_back(CCore::getMap()->getPlayer()->getHitBoxX());
+		Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eRIGHT);
+		Application::getMap()->getEvent()->vOLDLength.push_back(Application::getMap()->getPlayer()->getHitBoxX());
 
-		CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eNOTHING);
-		CCore::getMap()->getEvent()->vOLDLength.push_back(35);
+		Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eNOTHING);
+		Application::getMap()->getEvent()->vOLDLength.push_back(35);
 
-		CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->ePLAYPIPETOP);
-		CCore::getMap()->getEvent()->vNEWLength.push_back(1);
+		Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->ePLAYPIPETOP);
+		Application::getMap()->getEvent()->vNEWLength.push_back(1);
 
-		CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->eNOTHING);
-		CCore::getMap()->getEvent()->vNEWLength.push_back(35);
+		Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->eNOTHING);
+		Application::getMap()->getEvent()->vNEWLength.push_back(35);
 
-		CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->eTOP);
-		CCore::getMap()->getEvent()->vNEWLength.push_back(CCore::getMap()->getPlayer()->getHitBoxY());
+		Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->eTOP);
+		Application::getMap()->getEvent()->vNEWLength.push_back(Application::getMap()->getPlayer()->getHitBoxY());
 
 		for(int i = 0; i < 3; i++) {
-			CCore::getMap()->getEvent()->reDrawX.push_back(iLX + i);
-			CCore::getMap()->getEvent()->reDrawY.push_back(iLY);
-			CCore::getMap()->getEvent()->reDrawX.push_back(iRX + i);
-			CCore::getMap()->getEvent()->reDrawY.push_back(iRY);
+			Application::getMap()->getEvent()->reDrawX.push_back(iLX + i);
+			Application::getMap()->getEvent()->reDrawY.push_back(iLY);
+			Application::getMap()->getEvent()->reDrawX.push_back(iRX + i);
+			Application::getMap()->getEvent()->reDrawY.push_back(iRY);
 
-			CCore::getMap()->getEvent()->reDrawX.push_back(CCore::getMap()->getBlockIDX(CCore::getMap()->getEvent()->newPlayerXPos - CCore::getMap()->getEvent()->newMapXPos));
-			CCore::getMap()->getEvent()->reDrawY.push_back(CCore::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
-			CCore::getMap()->getEvent()->reDrawX.push_back(CCore::getMap()->getBlockIDX(CCore::getMap()->getEvent()->newPlayerXPos - CCore::getMap()->getEvent()->newMapXPos) + 1);
-			CCore::getMap()->getEvent()->reDrawY.push_back(CCore::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(Application::getMap()->getBlockIDX(Application::getMap()->getEvent()->newPlayerXPos - Application::getMap()->getEvent()->newMapXPos));
+			Application::getMap()->getEvent()->reDrawY.push_back(Application::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(Application::getMap()->getBlockIDX(Application::getMap()->getEvent()->newPlayerXPos - Application::getMap()->getEvent()->newMapXPos) + 1);
+			Application::getMap()->getEvent()->reDrawY.push_back(Application::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
 		}
 	} else { // -- VERT -> VERT
-		CCore::getMap()->getEvent()->newPlayerXPos -= CCore::getMap()->getPlayer()->getPowerLVL() > 0 ? 32 : 0 - CCore::getMap()->getPlayer()->getHitBoxX()/2;
-		CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eBOT);
-		CCore::getMap()->getEvent()->vOLDLength.push_back(CCore::getMap()->getPlayer()->getHitBoxY());
+		Application::getMap()->getEvent()->newPlayerXPos -= Application::getMap()->getPlayer()->getPowerLVL() > 0 ? 32 : 0 - Application::getMap()->getPlayer()->getHitBoxX()/2;
+		Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eBOT);
+		Application::getMap()->getEvent()->vOLDLength.push_back(Application::getMap()->getPlayer()->getHitBoxY());
 
-		CCore::getMap()->getEvent()->vOLDDir.push_back(CCore::getMap()->getEvent()->eNOTHING);
-		CCore::getMap()->getEvent()->vOLDLength.push_back(55);
+		Application::getMap()->getEvent()->vOLDDir.push_back(Application::getMap()->getEvent()->eNOTHING);
+		Application::getMap()->getEvent()->vOLDLength.push_back(55);
 
 		for(int i = 0; i < 3; i++) {
-			CCore::getMap()->getEvent()->reDrawX.push_back(iLX);
-			CCore::getMap()->getEvent()->reDrawY.push_back(iLY - i);
-			CCore::getMap()->getEvent()->reDrawX.push_back(iRX);
-			CCore::getMap()->getEvent()->reDrawY.push_back(iRY - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(iLX);
+			Application::getMap()->getEvent()->reDrawY.push_back(iLY - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(iRX);
+			Application::getMap()->getEvent()->reDrawY.push_back(iRY - i);
 
-			CCore::getMap()->getEvent()->reDrawX.push_back(CCore::getMap()->getBlockIDX(CCore::getMap()->getEvent()->newPlayerXPos - CCore::getMap()->getEvent()->newMapXPos));
-			CCore::getMap()->getEvent()->reDrawY.push_back(CCore::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
-			CCore::getMap()->getEvent()->reDrawX.push_back(CCore::getMap()->getBlockIDX(CCore::getMap()->getEvent()->newPlayerXPos - CCore::getMap()->getEvent()->newMapXPos) + 1);
-			CCore::getMap()->getEvent()->reDrawY.push_back(CCore::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(Application::getMap()->getBlockIDX(Application::getMap()->getEvent()->newPlayerXPos - Application::getMap()->getEvent()->newMapXPos));
+			Application::getMap()->getEvent()->reDrawY.push_back(Application::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
+			Application::getMap()->getEvent()->reDrawX.push_back(Application::getMap()->getBlockIDX(Application::getMap()->getEvent()->newPlayerXPos - Application::getMap()->getEvent()->newMapXPos) + 1);
+			Application::getMap()->getEvent()->reDrawY.push_back(Application::getMap()->getBlockIDY(newPlayerPosY) - 1 - i);
 		}
 
-		CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->ePLAYPIPETOP);
-		CCore::getMap()->getEvent()->vNEWLength.push_back(1);
+		Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->ePLAYPIPETOP);
+		Application::getMap()->getEvent()->vNEWLength.push_back(1);
 
-		CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->eNOTHING);
-		CCore::getMap()->getEvent()->vNEWLength.push_back(35);
+		Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->eNOTHING);
+		Application::getMap()->getEvent()->vNEWLength.push_back(35);
 
-		CCore::getMap()->getEvent()->vNEWDir.push_back(CCore::getMap()->getEvent()->eTOP);
-		CCore::getMap()->getEvent()->vNEWLength.push_back(CCore::getMap()->getPlayer()->getHitBoxY());
+		Application::getMap()->getEvent()->vNEWDir.push_back(Application::getMap()->getEvent()->eTOP);
+		Application::getMap()->getEvent()->vNEWLength.push_back(Application::getMap()->getPlayer()->getHitBoxY());
 	}
 
-	CCore::getMap()->setInEvent(true);
+	Application::getMap()->setInEvent(true);
 }

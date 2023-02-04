@@ -1,5 +1,5 @@
 #include "header.h"
-#include "Core.h"
+#include "Application.h"
 #include "IMG.h"
 #include "CFG.h"
 #include "Text.h"
@@ -7,24 +7,24 @@
 
 /* ******************************************** */
 
-Map* CCore::oMap = new Map();
-bool CCore::mouseLeftPressed = false;
-bool CCore::mouseRightPressed = false;
-int CCore::mouseX = 0;
-int CCore::mouseY = 0;
-bool CCore::quitGame = false;
+Map* Application::oMap = new Map();
+bool Application::mouseLeftPressed = false;
+bool Application::mouseRightPressed = false;
+int Application::mouseX = 0;
+int Application::mouseY = 0;
+bool Application::quitGame = false;
 
-bool CCore::movePressed = false;
-bool CCore::keyMenuPressed = false;
-bool CCore::keyS = false;
-bool CCore::keyW = false;
-bool CCore::keyA = false;
-bool CCore::keyD = false;
-bool CCore::keyShift = false;
-bool CCore::keyAPressed = false;
-bool CCore::keyDPressed = false;
+bool Application::movePressed = false;
+bool Application::keyMenuPressed = false;
+bool Application::keyS = false;
+bool Application::keyW = false;
+bool Application::keyA = false;
+bool Application::keyD = false;
+bool Application::keyShift = false;
+bool Application::keyAPressed = false;
+bool Application::keyDPressed = false;
 
-CCore::CCore(void) {
+Application::Application(void) {
 	this->quitGame = false;
 	this->iFPS = 0;
 	this->iNumOfFPS = 0;
@@ -72,7 +72,7 @@ CCore::CCore(void) {
 	CCFG::keyIDShift = SDLK_LSHIFT;
 }
 
-CCore::~CCore(void) {
+Application::~Application(void) {
 	delete oMap;
 	delete mainEvent;
 	SDL_DestroyRenderer(rR);
@@ -81,7 +81,7 @@ CCore::~CCore(void) {
 
 /* ******************************************** */
 
-void CCore::mainLoop() {
+void Application::mainLoop() {
 	lFPSTime = SDL_GetTicks();
 
 	while(!quitGame && mainEvent->type != SDL_QUIT) {
@@ -115,7 +115,7 @@ void CCore::mainLoop() {
 	}
 }
 
-void CCore::Input() {
+void Application::Input() {
 	switch(CCFG::getMM()->getViewID()) {
 		case 2: case 7:
 			if(!oMap->getInEvent()) {
@@ -130,7 +130,7 @@ void CCore::Input() {
 	}
 }
 
-void CCore::InputMenu() {
+void Application::InputMenu() {
 	if(mainEvent->type == SDL_KEYDOWN) {
 		CCFG::getMM()->setKey(mainEvent->key.keysym.sym);
 
@@ -185,7 +185,7 @@ void CCore::InputMenu() {
 	}
 }
 
-void CCore::InputPlayer() {
+void Application::InputPlayer() {
 	if(mainEvent->type == SDL_WINDOWEVENT) {
 		switch(mainEvent->window.event) {
 			case SDL_WINDOWEVENT_FOCUS_LOST:
@@ -313,7 +313,7 @@ void CCore::InputPlayer() {
 	}
 }
 
-void CCore::MouseInput() {
+void Application::MouseInput() {
 	switch(mainEvent->type) {
 		case SDL_MOUSEBUTTONDOWN: {
 			switch (mainEvent->button.button) {
@@ -352,25 +352,25 @@ void CCore::MouseInput() {
 	}
 }
 
-void CCore::resetKeys() {
+void Application::resetKeys() {
 	movePressed = keyMenuPressed = keyS = keyW = keyA = keyD = CCFG::keySpace = keyShift = keyAPressed = keyDPressed = false;
 }
 
-void CCore::Update() {
+void Application::Update() {
 	CCFG::getMM()->Update();
 }
 
 
-void CCore::Draw() {
+void Application::Draw() {
 	CCFG::getMM()->Draw(rR);
 }
 
 /* ******************************************** */
 
-void CCore::resetMove() {
+void Application::resetMove() {
 	this->keyAPressed = this->keyDPressed = false;
 }
 
-Map* CCore::getMap() {
+Map* Application::getMap() {
 	return oMap;
 }

@@ -1,5 +1,5 @@
 #include "Toad.h"
-#include "Core.h"
+#include "Application.h"
 
 /* ******************************************** */
 
@@ -27,7 +27,7 @@ void Toad::Update() { }
 void Toad::minionPhysics() { }
 
 void Toad::Draw(SDL_Renderer* rR, CIMG* iIMG) {
-	iIMG->Draw(rR,(int)(fXPos + CCore::getMap()->getXPos()), (int)fYPos, !moveDirection);
+	iIMG->Draw(rR,(int)(fXPos + Application::getMap()->getXPos()), (int)fYPos, !moveDirection);
 }
 
 /* ******************************************** */

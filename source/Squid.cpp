@@ -1,7 +1,7 @@
 #include "Squid.h"
-#include "Core.h"
-#include "stdlib.h"
-#include "time.h"
+#include "Application.h"
+#include <cstdlib>
+#include <ctime>
 
 /* ******************************************** */
 
@@ -32,7 +32,7 @@ Squid::~Squid(void) {
 /* ******************************************** */
 
 void Squid::Update() {
-	if(CCore::getMap()->getUnderWater()) {
+	if(Application::getMap()->getUnderWater()) {
 		if(moveXDistance <= 0) {
 			if(moveYDistance > 0) {
 				fYPos += 1;
@@ -41,8 +41,8 @@ void Squid::Update() {
 					changeBlockID();
 				}
 			} else {
-				if(fYPos + 52 > CCore::getMap()->getPlayer()->getYPos()) {
-					moveDirection = CCore::getMap()->getPlayer()->getXPos() - CCore::getMap()->getXPos() + CCore::getMap()->getPlayer()->getHitBoxX()/2 > fXPos;
+				if(fYPos + 52 > Application::getMap()->getPlayer()->getYPos()) {
+					moveDirection = Application::getMap()->getPlayer()->getXPos() - Application::getMap()->getXPos() + Application::getMap()->getPlayer()->getHitBoxX()/2 > fXPos;
 					moveXDistance = 96 + rand()%32;
 					changeBlockID();
 				} else {
@@ -66,7 +66,7 @@ void Squid::Update() {
 }
 
 void Squid::Draw(SDL_Renderer* rR, CIMG* iIMG) {
-	iIMG->Draw(rR,(int)(fXPos + CCore::getMap()->getXPos()), (int)fYPos);
+	iIMG->Draw(rR,(int)(fXPos + Application::getMap()->getXPos()), (int)fYPos);
 }
 
 void Squid::minionPhysics() { }
@@ -74,7 +74,7 @@ void Squid::minionPhysics() { }
 /* ******************************************** */
 
 void Squid::collisionWithPlayer(bool TOP) {
-	CCore::getMap()->playerDeath(true, false);
+	Application::getMap()->playerDeath(true, false);
 }
 
 void Squid::changeBlockID() {
