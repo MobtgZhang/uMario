@@ -62,7 +62,7 @@ void PauseMenu::enter() {
 	switch(activeMenuOption) {
 		case 0:
 			CCFG::getMM()->setViewID(CCFG::getMM()->eGame);
-			CCFG::getMusic()->PlayMusic();
+			CCFG::getMusic()->PauseMusic();
 			break;
 		case 1:
 			CCFG::getMM()->getOptions()->setEscapeToMainMenu(false);
