@@ -17,7 +17,9 @@ OptionsMenu::OptionsMenu(void) {
 	this->lMO.push_back(new MenuOption("JUMP", 73, 161));
 	this->lMO.push_back(new MenuOption("RUN", 73, 185));
 	this->lMO.push_back(new MenuOption("CAN MOVE BACKWARD", 73, 209));
-	this->lMO.push_back(new MenuOption("MAIN MENU", 73, 257));
+	this->lMO.push_back(new MenuOption("MOUSE PIN CONSOLE", 73, 233));
+	this->lMO.push_back(new MenuOption("CRT EFFECT", 73, 257));
+	this->lMO.push_back(new MenuOption("MAIN MENU", 73, 305));
 
 	this->numOfMenuOptions = lMO.size();
 
@@ -98,7 +100,9 @@ void OptionsMenu::Draw(SDL_Renderer* rR) {
 	CCFG::getText()->Draw(rR, CCFG::getKeyString(CCFG::keyIDShift), 185, 185, 16, activeMenuOption == 5 ? 255 : 90, activeMenuOption == 5 ? 255 : 90, activeMenuOption == 5 ? 255 : 90);
 
 	CCFG::getText()->Draw(rR, CCFG::canMoveBackward ? "TRUE" : "FALSE", 357, 209, 16, activeMenuOption == 6 ? 255 : 90, activeMenuOption == 6 ? 255 : 90, activeMenuOption == 6 ? 255 : 90);
-
+	CCFG::getText()->Draw(rR, CCFG::displayConsole ? "TRUE" : "FALSE", 357, 233, 16, activeMenuOption == 7 ? 255 : 90, activeMenuOption == 7 ? 255 : 90, activeMenuOption == 7 ? 255 : 90);
+	CCFG::getText()->Draw(rR, CCFG::crtEffect ? "TRUE" : "FALSE", 357, 257, 16, activeMenuOption == 8 ? 255 : 90, activeMenuOption == 8 ? 255 : 90, activeMenuOption == 8 ? 255 : 90);
+	
 	if(inSetKey) {
 		SDL_SetRenderDrawColor(rR, 20, 20, 20, 245);
 		SDL_RenderFillRect(rR, &rSetKeyRect);
@@ -135,6 +139,12 @@ void OptionsMenu::enter() {
 			CCFG::canMoveBackward = !CCFG::canMoveBackward;
 			break;
 		case 7:
+			CCFG::displayConsole = !CCFG::displayConsole;
+			break;
+		case 8:
+			CCFG::crtEffect = !CCFG::crtEffect;
+			break;
+		case 9:
 			Application::getMap()->resetGameData();
 			CCFG::getMM()->setViewID(CCFG::getMM()->eMainMenu);
 			break;

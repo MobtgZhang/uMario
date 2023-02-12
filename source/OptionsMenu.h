@@ -32,6 +32,8 @@ public:
 	void updateVolumeRect();
 
 	void setEscapeToMainMenu(bool escapeToMainMenu);
+
+	void setConsole(bool display_console);
 };
 
 #endif

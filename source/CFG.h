@@ -32,6 +32,10 @@ public:
 	static Music* getMusic();
 
 	static bool canMoveBackward;
+
+	static bool displayConsole;
+
+	static bool crtEffect;
 };
 
 #endif

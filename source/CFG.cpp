@@ -30,7 +30,8 @@ int CCFG::keyIDSpace = 0;
 int CCFG::keyIDShift = 0;
 
 bool CCFG::canMoveBackward = true;
-
+bool CCFG::displayConsole = false;
+bool CCFG::crtEffect = false;
 /* ******************************************** */
 
 Text* CCFG::getText() {

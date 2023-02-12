@@ -92,17 +92,22 @@ void MenuManager::Draw(SDL_Renderer* rR) {
 			oPauseMenu->Draw(rR);
 			break;
 	}
-	 //-- CRT EFFECT
-	SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_BLEND);
-	SDL_SetRenderDrawColor(rR, 0, 0, 0, CCFG::getMusic()->getVolume());
-	for(int i = 0; i < CCFG::GAME_WIDTH; i += 2) {
-		SDL_RenderDrawLine(rR, i, 0, i, CCFG::GAME_WIDTH);
+	//-- CRT EFFECT
+	if(CCFG::crtEffect){
+		SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_BLEND);
+		SDL_SetRenderDrawColor(rR, 0, 0, 0, CCFG::getMusic()->getVolume());
+		for(int i = 0; i < CCFG::GAME_WIDTH; i += 2) {
+			SDL_RenderDrawLine(rR, i, 0, i, CCFG::GAME_WIDTH);
+		}
+		for(int i = 0; i < CCFG::GAME_HEIGHT; i += 2) {
+			SDL_RenderDrawLine(rR, 0, i, CCFG::GAME_WIDTH, i);
+		}
 	}
-	for(int i = 0; i < CCFG::GAME_HEIGHT; i += 2) {
-		SDL_RenderDrawLine(rR, 0, i, CCFG::GAME_WIDTH, i);
+	
+	if(CCFG::displayConsole){
+		oConsole->Draw(rR);
 	}
-
-	oConsole->Draw(rR);
+	Application::getMap()->setBackgroundColor(rR);
 }
 
 void MenuManager::setBackgroundColor(SDL_Renderer* rR) {

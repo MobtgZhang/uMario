@@ -330,10 +330,11 @@ void Application::MouseInput() {
 			break;
 		}
 		case SDL_MOUSEMOTION: {
-			
-			SDL_GetMouseState(&mouseX, &mouseY);
-			CCFG::getMM()->getConsole()->print("x:" + std::to_string(mouseX));
-			CCFG::getMM()->getConsole()->print("y:" + std::to_string(mouseY));
+			if(CCFG::displayConsole){
+				SDL_GetMouseState(&mouseX, &mouseY);
+				CCFG::getMM()->getConsole()->print("x:" + std::to_string(mouseX));
+				CCFG::getMM()->getConsole()->print("y:" + std::to_string(mouseY));
+			}
 			break;
 		}
 		case SDL_MOUSEBUTTONUP: {
