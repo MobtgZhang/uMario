@@ -39,7 +39,7 @@ void MenuManager::Update() {
 		case eGame:
 			Application::getMap()->Update();
 			Application::getMap()->UpdateMinionsCollisions();
-			oLE->Update();
+			if(CCFG::displayConsole) oLE->Update();
 			break;
 		case eAbout:
 			Application::getMap()->UpdateMinions();
@@ -69,7 +69,7 @@ void MenuManager::Draw(SDL_Renderer* rR) {
 			break;
 		case eGame:
 			Application::getMap()->Draw(rR);
-			oLE->Draw(rR);
+			if(CCFG::displayConsole) oLE->Draw(rR);
 			break;
 		case eAbout:
 			Application::getMap()->DrawMap(rR);

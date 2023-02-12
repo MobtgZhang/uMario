@@ -3,7 +3,7 @@
 #ifndef Event_H
 #define Event_H
 
-#include "header.h"
+#include<SDL2/SDL.h>
 #include <vector>
 
 class Event

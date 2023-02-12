@@ -3,8 +3,9 @@
 #ifndef CONSOLE_H
 #define CONOSLE_H
 
-#include "header.h"
-#include <vector>
+#include<SDL2/SDL.h>
+#include<string>
+#include<vector>
 
 class Console
 {

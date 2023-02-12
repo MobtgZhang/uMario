@@ -3,7 +3,7 @@
 #ifndef BUBBLE_H
 #define BUBBlE_H
 
-#include "header.h"
+
 #include "Img.h"
 
 class Bubble

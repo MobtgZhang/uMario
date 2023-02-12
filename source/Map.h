@@ -3,7 +3,6 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "header.h"
 #include "Img.h"
 #include "Block.h"
 #include "MapLevel.h"

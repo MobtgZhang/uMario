@@ -3,7 +3,7 @@
 #ifndef LEVELEDITOR_H
 #define LEVELEDITOR_H
 
-#include "header.h"
+#include<SDL2/SDL.h>
 
 class LevelEditor
 {

@@ -3,7 +3,8 @@
 #ifndef POINTS_H
 #define POINTS_H
 
-#include "header.h"
+#include<string>
+#include<SDL2/SDL.h>
 
 class Points
 {

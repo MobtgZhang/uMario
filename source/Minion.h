@@ -1,7 +1,7 @@
 #ifndef MINION_H
 #define MINION_H
 
-#include "header.h"
+
 #include "CFG.h"
 #include "Img.h"
 

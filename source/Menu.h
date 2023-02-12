@@ -3,9 +3,10 @@
 #ifndef MENU_H
 #define MENU_h
 
-#include "header.h"
-#include "MenuOption.h"
 #include <vector>
+#include<SDL2/SDL.h>
+#include "MenuOption.h"
+
 
 class Menu
 {

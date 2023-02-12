@@ -3,7 +3,8 @@
 #ifndef IMG_H
 #define IMG_H
 
-#include "header.h"
+# include<string>
+# include<SDL2/SDL.h>
 
 class CImg
 {

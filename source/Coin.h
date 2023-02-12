@@ -3,7 +3,7 @@
 #ifndef COIN_H
 #define COIN_H
 
-#include "header.h"
+#include<SDL2/SDL.h>
 
 class Coin
 {

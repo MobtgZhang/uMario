@@ -3,7 +3,6 @@
 #ifndef TEXT_H
 #define TEXT_H
 
-#include "header.h"
 #include "Img.h"
 
 class Text

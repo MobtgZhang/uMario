@@ -1,4 +1,3 @@
-#include "header.h"
 #include "Application.h"
 #include "Img.h"
 #include "CFG.h"
@@ -350,7 +349,7 @@ void Application::MouseInput() {
 		}
 		case SDL_MOUSEWHEEL:
 			if(mainEvent->wheel.timestamp > SDL_GetTicks() - 2) {
-				//CCFG::getMM()->getLE()->mouseWheel(mainEvent->wheel.y);
+				CCFG::getMM()->getLE()->mouseWheel(mainEvent->wheel.y);
 			}
 			break;
 	}

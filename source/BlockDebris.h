@@ -3,7 +3,8 @@
 #ifndef BLOCKDEBRIS_H
 #define BLOCKDEBRIS_H
 
-#include "header.h"
+#include<SDL2/SDL.h>
+
 #include "Vector2.h"
 
 class BlockDebris

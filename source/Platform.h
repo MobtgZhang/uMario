@@ -3,7 +3,7 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#include "header.h"
+# include<SDL2/SDL.h>
 
 class Platform
 {

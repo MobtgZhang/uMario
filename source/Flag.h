@@ -3,7 +3,7 @@
 #ifndef FLAG_H
 #define FLAG_H
 
-#include "header.h"
+
 #include "Img.h"
 
 class Flag
