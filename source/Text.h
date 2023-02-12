@@ -4,12 +4,12 @@
 #define TEXT_H
 
 #include "header.h"
-#include "IMG.h"
+#include "Img.h"
 
 class Text
 {
 private:
-	CIMG* FONT;
+	CImg* FONT;
 
 	SDL_Rect rCrop;
 	SDL_Rect rRect;

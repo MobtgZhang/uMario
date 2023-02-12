@@ -4,7 +4,7 @@
 #define MAP_H
 
 #include "header.h"
-#include "IMG.h"
+#include "Img.h"
 #include "Block.h"
 #include "MapLevel.h"
 #include "Player.h"

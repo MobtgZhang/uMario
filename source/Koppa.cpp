@@ -114,7 +114,7 @@ void Koppa::Update() {
 	}
 }
 
-void Koppa::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void Koppa::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	if(minionState != -2) {
 		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + (minionState <= 1 ? -14 : 2), !moveDirection);
 	} else {

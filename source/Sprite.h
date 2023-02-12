@@ -3,14 +3,14 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "IMG.h"
+#include "Img.h"
 #include <string>
 #include <vector>
 
 class Sprite
 {
 private:
-	std::vector<CIMG*> tSprite;
+	std::vector<CImg*> tSprite;
 	std::vector<unsigned int> iDelay;
 
 	bool bRotate;
@@ -29,8 +29,8 @@ public:
 	void Update();
 
 	/* ----- get & set ----- */
-	CIMG* getTexture();
-	CIMG* getTexture(int iID);
+	CImg* getTexture();
+	CImg* getTexture(int iID);
 };
 
 #endif

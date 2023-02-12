@@ -77,7 +77,7 @@ void PlayerFireBall::Update() {
 	}
 }
 
-void PlayerFireBall::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void PlayerFireBall::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	if(!bDestroy) {
 		iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos, !moveDirection);
 	} else {

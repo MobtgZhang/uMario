@@ -16,7 +16,7 @@ int CCFG::GAME_WIDTH  = 800;
 int CCFG::GAME_HEIGHT = 448;
 
 Text* CCFG::oText = new Text();
-CIMG* CCFG::tSMBLOGO = new CIMG();
+CImg* CCFG::tSMBLOGO = new CImg();
 
 MenuManager* CCFG::oMM = new MenuManager();
 Music* CCFG::oMusic = new Music();
@@ -45,7 +45,7 @@ Music* CCFG::getMusic() {
 	return oMusic;
 }
 
-CIMG* CCFG::getSMBLOGO() {
+CImg* CCFG::getSMBLOGO() {
 	return tSMBLOGO;
 }
 

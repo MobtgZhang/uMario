@@ -34,7 +34,7 @@ Minion::~Minion(void) {
 /* ******************************************** */
 
 void Minion::Update() { }
-void Minion::Draw(SDL_Renderer* rR, CIMG* iIMG) { }
+void Minion::Draw(SDL_Renderer* rR, CImg* iIMG) { }
 
 bool Minion::updateMinion() {
 	if (!minionSpawned) {

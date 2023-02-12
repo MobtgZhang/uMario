@@ -3,7 +3,7 @@
 
 #include "header.h"
 #include "CFG.h"
-#include "IMG.h"
+#include "Img.h"
 
 class Minion
 {
@@ -39,7 +39,7 @@ public:
 
 	// ---------- Methods
 	virtual void Update();
-	virtual void Draw(SDL_Renderer* rR, CIMG* iIMG);
+	virtual void Draw(SDL_Renderer* rR, CImg* iIMG);
 
 	virtual void updateYPos(int iN);
 	virtual void updateXPos();

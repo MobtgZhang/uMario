@@ -20,7 +20,7 @@ public:
 
 	void minionPhysics();
 
-	void Draw(SDL_Renderer* rR, CIMG* iIMG);
+	void Draw(SDL_Renderer* rR, CImg* iIMG);
 
 	void collisionWithPlayer(bool TOP);
 

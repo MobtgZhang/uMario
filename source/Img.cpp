@@ -1,27 +1,27 @@
-#include "IMG.h"
+#include "Img.h"
 
 /* ******************************************** */
 
-CIMG::CIMG(void) { }
+CImg::CImg(void) { }
 
-CIMG::CIMG(std::string fileName, SDL_Renderer* rR) {
+CImg::CImg(std::string fileName, SDL_Renderer* rR) {
 	setIMG(fileName, rR);
 }
 
-CIMG::~CIMG(void) {
+CImg::~CImg(void) {
 	SDL_DestroyTexture(tIMG);
 }
 
 /* ******************************************** */
 
-void CIMG::Draw(SDL_Renderer* rR, int iXOffset, int iYOffset) {
+void CImg::Draw(SDL_Renderer* rR, int iXOffset, int iYOffset) {
 	rRect.x = iXOffset;
 	rRect.y = iYOffset;
 
 	SDL_RenderCopy(rR, tIMG, NULL, &rRect);
 }
 
-void CIMG::Draw(SDL_Renderer* rR, int iXOffset, int iYOffset, bool bRotate) {
+void CImg::Draw(SDL_Renderer* rR, int iXOffset, int iYOffset, bool bRotate) {
 	rRect.x = iXOffset;
 	rRect.y = iYOffset;
 
@@ -32,20 +32,20 @@ void CIMG::Draw(SDL_Renderer* rR, int iXOffset, int iYOffset, bool bRotate) {
 	}
 }
 
-void CIMG::DrawVert(SDL_Renderer* rR, int iXOffset, int iYOffset) {
+void CImg::DrawVert(SDL_Renderer* rR, int iXOffset, int iYOffset) {
 	rRect.x = iXOffset;
 	rRect.y = iYOffset;
 
 	SDL_RenderCopyEx(rR, tIMG, NULL, &rRect, 180.0, NULL, SDL_FLIP_HORIZONTAL);
 }
 
-void CIMG::Draw(SDL_Renderer* rR, SDL_Rect rCrop, SDL_Rect rRect) {
+void CImg::Draw(SDL_Renderer* rR, SDL_Rect rCrop, SDL_Rect rRect) {
 	SDL_RenderCopy(rR, tIMG, &rCrop, &rRect);
 }
 
 /* ******************************************** */
 
-void CIMG::setIMG(std::string fileName, SDL_Renderer* rR) {
+void CImg::setIMG(std::string fileName, SDL_Renderer* rR) {
 	fileName = "files/images/" + fileName + ".bmp";
 	SDL_Surface* loadedSurface = SDL_LoadBMP(fileName.c_str());
 	SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 255, 0, 255));
@@ -62,10 +62,10 @@ void CIMG::setIMG(std::string fileName, SDL_Renderer* rR) {
 	SDL_FreeSurface(loadedSurface);
 }
 
-SDL_Texture* CIMG::getIMG() {
+SDL_Texture* CImg::getIMG() {
 	return tIMG;
 }
 
-SDL_Rect CIMG::getRect() {
+SDL_Rect CImg::getRect() {
 	return rRect;
 }

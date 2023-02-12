@@ -3,7 +3,7 @@
 #ifndef MENUMANAGER_H
 #define MENUMANAGER_H
 
-#include "IMG.h"
+#include "Img.h"
 #include "MainMenu.h"
 #include "LoadingMenu.h"
 #include "AboutMenu.h"
@@ -15,15 +15,15 @@
 class MenuManager
 {
 private:
-	CIMG* activeOption;
+	CImg* activeOption;
 
 	MainMenu* oMainMenu;
 	LoadingMenu* oLoadingMenu;
 	AboutMenu* oAboutMenu;
 	OptionsMenu* oOptionsMenu;
 	PauseMenu* oPauseMenu;
-	//Console* oConsole;
-	//LevelEditor* oLE;
+	Console* oConsole;
+	LevelEditor* oLE;
 
 public:
 	MenuManager(void);
@@ -36,7 +36,7 @@ public:
 		eAbout,
 		eOptions,
 		ePasue,
-		//eLevelEditor,
+		eLevelEditor,
 	};
 
 	gameState currentGameState;
@@ -56,14 +56,14 @@ public:
 	int getViewID();
 	void setViewID(gameState viewID);
 
-	CIMG* getActiveOption();
+	CImg* getActiveOption();
 	void setActiveOption(SDL_Renderer* rR);
 
 	LoadingMenu* getLoadingMenu();
 	AboutMenu* getAboutMenu();
 
-	//Console* getConsole();
-	//LevelEditor* getLE();
+	Console* getConsole();
+	LevelEditor* getLE();
 	OptionsMenu* getOptions();
 };
 

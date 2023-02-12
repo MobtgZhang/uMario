@@ -81,7 +81,7 @@ void Star::minionPhysics() {
 	}
 }
 
-void Star::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void Star::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	iIMG->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + 2, false);
 	if (inSpawnState) {
 		Application::getMap()->getBlock(Application::getMap()->getLevelType() == 0 || Application::getMap()->getLevelType() == 4 ? 9 : 56)->getSprite()->getTexture()->Draw(rR, (int)fXPos + (int)Application::getMap()->getXPos() - 2, (int)fYPos + (32 - inSpawnY) - Application::getMap()->getMapBlock(iX, iY)->getYPos(), false);

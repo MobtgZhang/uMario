@@ -1,6 +1,6 @@
 #include "header.h"
 #include "Application.h"
-#include "IMG.h"
+#include "Img.h"
 #include "CFG.h"
 #include "Text.h"
 #include <SDL2/SDL_mixer.h>
@@ -56,7 +56,8 @@ Application::Application(void) {
 	oMap = new Map(rR);
 	CCFG::getMM()->setActiveOption(rR);
 	CCFG::getSMBLOGO()->setIMG("super_mario_bros", rR);
-
+	CCFG::getText()->setFont(rR, "font");
+	
 	CCFG::getMusic()->PlayMusic();
 
 	this->keyMenuPressed = this->movePressed = this->keyS = this->keyW = this->keyA = this->keyD = this->keyShift = false;
@@ -97,7 +98,9 @@ void Application::mainLoop() {
 		Update();
 		Draw();
 
-		/*CCFG::getText()->Draw(rR, "FPS:" + std::to_string(iNumOfFPS), CCFG::GAME_WIDTH - CCFG::getText()->getTextWidth("FPS:" + std::to_string(iNumOfFPS), 8) - 8, 5, 8);
+
+		// Some FPS configurations
+		CCFG::getText()->Draw(rR, "FPS:" + std::to_string(iNumOfFPS), CCFG::GAME_WIDTH - CCFG::getText()->getTextWidth("FPS:" + std::to_string(iNumOfFPS), 8) - 8, 5, 8);
 
 		if(SDL_GetTicks() - 1000 >= lFPSTime) {
 			lFPSTime = SDL_GetTicks();
@@ -105,7 +108,7 @@ void Application::mainLoop() {
 			iFPS = 0;
 		}
 
-		++iFPS;*/
+		++iFPS;
 
 		SDL_RenderPresent(rR);
 		
@@ -329,8 +332,8 @@ void Application::MouseInput() {
 		case SDL_MOUSEMOTION: {
 			
 			SDL_GetMouseState(&mouseX, &mouseY);
-			//CCFG::getMM()->getConsole()->print("x:" + std::to_string(mouseX));
-			//CCFG::getMM()->getConsole()->print("y:" + std::to_string(mouseY));
+			CCFG::getMM()->getConsole()->print("x:" + std::to_string(mouseX));
+			CCFG::getMM()->getConsole()->print("y:" + std::to_string(mouseY));
 			break;
 		}
 		case SDL_MOUSEBUTTONUP: {

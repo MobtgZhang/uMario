@@ -14,7 +14,7 @@ public:
 	~Spikey(void);
 
 	void Update();
-	void Draw(SDL_Renderer* rR, CIMG* iIMG);
+	void Draw(SDL_Renderer* rR, CImg* iIMG);
 
 	void minionPhysics();
 

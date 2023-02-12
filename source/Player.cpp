@@ -1254,6 +1254,6 @@ Sprite* Player::getMarioSprite() {
 	return sMario[1 + 11 * powerLVL];
 }
 
-CIMG* Player::getMarioLVLUP() {
+CImg* Player::getMarioLVLUP() {
 	return tMarioLVLUP;
 }

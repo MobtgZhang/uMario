@@ -33,8 +33,6 @@ Map::Map(SDL_Renderer* rR) {
 
 	this->bTP = false;
 
-	CCFG::getText()->setFont(rR, "font");
-
 	oEvent = new Event();
 	oFlag = NULL;
 

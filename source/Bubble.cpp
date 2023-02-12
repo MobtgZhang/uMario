@@ -27,7 +27,7 @@ void Bubble::Update() {
 	}
 }
 
-void Bubble::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void Bubble::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	iIMG->Draw(rR,(int)(iXPos + Application::getMap()->getXPos()), iYPos);
 }
 

@@ -3,7 +3,7 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#include "IMG.h"
+#include "Img.h"
 #include "Sprite.h"
 
 /* ******************************************** */

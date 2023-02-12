@@ -9,9 +9,9 @@ MenuManager::MenuManager(void) {
 	this->oMainMenu = new MainMenu();
 	this->oLoadingMenu = new LoadingMenu();
 	this->oAboutMenu = new AboutMenu();
-	//this->oConsole = new Console();
+	this->oConsole = new Console();
 	this->oOptionsMenu = new OptionsMenu();
-	//this->oLE = new LevelEditor();
+	this->oLE = new LevelEditor();
 	this->oPauseMenu = new PauseMenu();
 }
 
@@ -21,6 +21,8 @@ MenuManager::~MenuManager(void) {
 	delete oMainMenu;
 	delete oLoadingMenu;
 	delete oAboutMenu;
+	delete oLE;
+	delete oConsole;
 }
 
 /* ******************************************** */
@@ -37,7 +39,7 @@ void MenuManager::Update() {
 		case eGame:
 			Application::getMap()->Update();
 			Application::getMap()->UpdateMinionsCollisions();
-			//oLE->Update();
+			oLE->Update();
 			break;
 		case eAbout:
 			Application::getMap()->UpdateMinions();
@@ -67,7 +69,7 @@ void MenuManager::Draw(SDL_Renderer* rR) {
 			break;
 		case eGame:
 			Application::getMap()->Draw(rR);
-			//oLE->Draw(rR);
+			oLE->Draw(rR);
 			break;
 		case eAbout:
 			Application::getMap()->DrawMap(rR);
@@ -90,7 +92,7 @@ void MenuManager::Draw(SDL_Renderer* rR) {
 			oPauseMenu->Draw(rR);
 			break;
 	}
-	/* -- CRT EFFECT
+	 //-- CRT EFFECT
 	SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(rR, 0, 0, 0, CCFG::getMusic()->getVolume());
 	for(int i = 0; i < CCFG::GAME_WIDTH; i += 2) {
@@ -98,9 +100,9 @@ void MenuManager::Draw(SDL_Renderer* rR) {
 	}
 	for(int i = 0; i < CCFG::GAME_HEIGHT; i += 2) {
 		SDL_RenderDrawLine(rR, 0, i, CCFG::GAME_WIDTH, i);
-	}*/
+	}
 
-	//oConsole->Draw(rR);
+	oConsole->Draw(rR);
 }
 
 void MenuManager::setBackgroundColor(SDL_Renderer* rR) {
@@ -208,12 +210,12 @@ void MenuManager::setViewID(gameState viewID) {
 	this->currentGameState = viewID;
 }
 
-CIMG* MenuManager::getActiveOption() {
+CImg* MenuManager::getActiveOption() {
 	return activeOption;
 }
 
 void MenuManager::setActiveOption(SDL_Renderer* rR) {
-	activeOption = new CIMG("active_option", rR);
+	activeOption = new CImg("active_option", rR);
 }
 
 LoadingMenu* MenuManager::getLoadingMenu() {
@@ -223,7 +225,7 @@ LoadingMenu* MenuManager::getLoadingMenu() {
 AboutMenu* MenuManager::getAboutMenu() {
 	return oAboutMenu;
 }
-/*
+
 Console* MenuManager::getConsole() {
 	return oConsole;
 }
@@ -231,7 +233,7 @@ Console* MenuManager::getConsole() {
 LevelEditor* MenuManager::getLE() {
 	return oLE;
 }
-*/
+
 OptionsMenu* MenuManager::getOptions() {
 	return oOptionsMenu;
 }

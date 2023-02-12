@@ -5,16 +5,16 @@
 
 #include "header.h"
 
-class CIMG
+class CImg
 {
 private:
 	SDL_Texture* tIMG;
 	SDL_Rect rRect;
 
 public:
-	CIMG(void);
-	CIMG(std::string fileName, SDL_Renderer* rR);
-	~CIMG(void);
+	CImg(void);
+	CImg(std::string fileName, SDL_Renderer* rR);
+	~CImg(void);
 
 	void Draw(SDL_Renderer * rR, int iXOffset, int iYOffset);
 	void Draw(SDL_Renderer * rR, int iXOffset, int iYOffset, bool bRoate);

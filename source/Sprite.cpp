@@ -13,14 +13,14 @@ Sprite::Sprite(SDL_Renderer* rR, std::vector<std::string> sSprite, std::vector<u
 	this->iEndFrame = sSprite.size() - 1;
 
 	for(int i = 0; i < this->iEndFrame + 1; i++) {
-		this->tSprite.push_back(new CIMG(sSprite[i], rR));
+		this->tSprite.push_back(new CImg(sSprite[i], rR));
 	}
 
 	this->lTimePassed = 0;
 }
 
 Sprite::~Sprite(void) {
-	for(std::vector<CIMG*>::iterator i = tSprite.begin(); i != tSprite.end(); i++) {
+	for(std::vector<CImg*>::iterator i = tSprite.begin(); i != tSprite.end(); i++) {
 		delete (*i);
 	}
 }
@@ -41,10 +41,10 @@ void Sprite::Update() {
 
 /* ******************************************** */
 
-CIMG* Sprite::getTexture() {
+CImg* Sprite::getTexture() {
 	return tSprite[iCurrentFrame];
 }
 
-CIMG* Sprite::getTexture(int iID) {
+CImg* Sprite::getTexture(int iID) {
 	return tSprite[iID];
 }

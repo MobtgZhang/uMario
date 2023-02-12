@@ -26,7 +26,7 @@ Toad::~Toad(void) {
 void Toad::Update() { }
 void Toad::minionPhysics() { }
 
-void Toad::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void Toad::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	iIMG->Draw(rR,(int)(fXPos + Application::getMap()->getXPos()), (int)fYPos, !moveDirection);
 }
 

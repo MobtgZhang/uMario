@@ -4,7 +4,7 @@
 #define FLAG_H
 
 #include "header.h"
-#include "IMG.h"
+#include "Img.h"
 
 class Flag
 {
@@ -25,8 +25,8 @@ public:
 
 	void Update();
 	void UpdateCastleFlag();
-	void Draw(SDL_Renderer* rR, CIMG* iIMG);
-	void DrawCastleFlag(SDL_Renderer* rR, CIMG* iIMG);
+	void Draw(SDL_Renderer* rR, CImg* iIMG);
+	void DrawCastleFlag(SDL_Renderer* rR, CImg* iIMG);
 };
 
 #endif

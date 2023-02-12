@@ -10,7 +10,7 @@ class CCFG
 private:
 	static MenuManager* oMM;
 	static Text* oText;
-	static CIMG* tSMBLOGO;
+	static CImg* tSMBLOGO;
 	static Music* oMusic;
 public:
 	CCFG(void);
@@ -24,7 +24,7 @@ public:
 
 	static std::string getKeyString(int keyID);
 
-	static CIMG* getSMBLOGO();
+	static CImg* getSMBLOGO();
 
 	static Text* getText();
 

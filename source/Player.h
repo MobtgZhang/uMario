@@ -15,7 +15,7 @@ private:
 	int iSpriteID;
 	unsigned int iMoveAnimationTime;
 
-	CIMG* tMarioLVLUP;
+	CImg* tMarioLVLUP;
 
 	float fXPos, fYPos;
 	int iNumOfLives;
@@ -175,7 +175,7 @@ public:
 	bool getSquat();
 	void setSquat(bool bSquat);
 
-	CIMG* getMarioLVLUP();
+	CImg* getMarioLVLUP();
 	Sprite* getMarioSprite();
 
 	void addCoin();

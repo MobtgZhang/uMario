@@ -153,7 +153,7 @@ void Cheep::Update() {
 	}
 }
 
-void Cheep::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void Cheep::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	if(minionState == -2) {
 		iIMG->DrawVert(rR, (int)fXPos + (int)Application::getMap()->getXPos(), (int)fYPos + 2);
 	} else {

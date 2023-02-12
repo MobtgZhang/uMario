@@ -4,7 +4,7 @@
 #define BUBBlE_H
 
 #include "header.h"
-#include "IMG.h"
+#include "Img.h"
 
 class Bubble
 {
@@ -18,7 +18,7 @@ public:
 	~Bubble(void);
 
 	void Update();
-	void Draw(SDL_Renderer* rR, CIMG* iIMG);
+	void Draw(SDL_Renderer* rR, CImg* iIMG);
 	
 	int getBlockID();
 	bool getDestroy();

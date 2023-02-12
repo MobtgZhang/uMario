@@ -146,5 +146,5 @@ void Text::checkExtra(int iChar) {
 /* ******************************************** */
 
 void Text::setFont(SDL_Renderer* rR, std::string fileName) {
-	FONT = new CIMG(fileName, rR);
+	FONT = new CImg(fileName, rR);
 }

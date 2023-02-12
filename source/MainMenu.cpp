@@ -62,13 +62,13 @@ void MainMenu::Draw(SDL_Renderer* rR) {
 
 				extraX = 32;
 
-				/*for(int j = 0; j < 4; j++) {
+				for(int j = 0; j < 4; j++) {
 					if(j == activeSecondWorldID) {
 						CCFG::getText()->Draw(rR, std::to_string(j + 1), rSelectWorld.x + 16*(i + 1) + 16*i, rSelectWorld.y + 40 + 24*j, 16, 255, 255, 255);
 					} else {
 						CCFG::getText()->Draw(rR, std::to_string(j + 1), rSelectWorld.x + 16*(i + 1) + 16*i, rSelectWorld.y + 40 + 24*j, 16, 90, 90, 90);
 					}
-				}*/
+				}
 			} else {
 				CCFG::getText()->Draw(rR, std::to_string(i + 1), rSelectWorld.x + 16*(i + 1) + 16*i + extraX, rSelectWorld.y + 16 + 24, 16, 90, 90, 90);
 			}

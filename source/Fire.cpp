@@ -39,7 +39,7 @@ void Fire::Update() {
 	}
 }
 
-void Fire::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void Fire::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	iIMG->Draw(rR, (int)(fXPos + Application::getMap()->getXPos()), (int)fYPos - 4);
 }
 

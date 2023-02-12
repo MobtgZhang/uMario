@@ -21,7 +21,7 @@ public:
 	FireBall(int iXPos, int iYPos, int radius, int nSliceID, bool moveDirection);
 	~FireBall(void);
 
-	void Draw(SDL_Renderer* rR, CIMG* iIMG);
+	void Draw(SDL_Renderer* rR, CImg* iIMG);
 	void Update();
 
 	void updateXPos();

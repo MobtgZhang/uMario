@@ -64,7 +64,7 @@ void Plant::Update() {
 	}
 }
 
-void Plant::Draw(SDL_Renderer* rR, CIMG* iIMG) {
+void Plant::Draw(SDL_Renderer* rR, CImg* iIMG) {
 	iIMG->Draw(rR, (int)(fXPos + Application::getMap()->getXPos()) - 2, (int)fYPos - 6, false);
 
 	for(int i = 0; i < 3; i++) {
