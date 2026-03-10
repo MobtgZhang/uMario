@@ -49,6 +49,6 @@ void Fire::minionPhysics() {
 
 /* ******************************************** */
 
-void Fire::collisionWithPlayer(bool TOP) {
+void Fire::collisionWithPlayer(bool /* TOP */) {
 	Application::getMap()->playerDeath(true, false);
 }

@@ -9,7 +9,7 @@ class Minion
 {
 public:
 	Minion(void);
-	~Minion(void);
+	virtual ~Minion(void);
 
 	int minionState;
 

@@ -12,7 +12,7 @@ class Menu
 {
 public:
 	Menu(void);
-	~Menu(void);
+	virtual ~Menu(void);
 
 	std::vector<MenuOption*> lMO; 
 

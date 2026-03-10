@@ -82,7 +82,7 @@ void Text::Draw(SDL_Renderer* rR, std::string sText, int X, int Y, int iWidth, i
 }
 
 
-void Text::DrawWS(SDL_Renderer* rR, std::string sText, int X, int Y,int iR, int iG, int iB, int fontSize) {
+void Text::DrawWS(SDL_Renderer* rR, std::string sText, int X, int Y, int /* iR */, int /* iG */, int /* iB */, int fontSize) {
 	this->fontSize = fontSize;
 	this->extraLeft = 0;
 	this->nextExtraLeft = 0;

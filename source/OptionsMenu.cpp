@@ -72,7 +72,7 @@ void OptionsMenu::Draw(SDL_Renderer* rR) {
 	rRect.w += 2;
 
 	for(unsigned int i = 0; i < lMO.size(); i++) {
-		if(i == activeMenuOption) {
+		if(static_cast<int>(i) == activeMenuOption) {
 			CCFG::getText()->Draw(rR, lMO[i]->getText(), lMO[i]->getXPos(), lMO[i]->getYPos(), 16, 255, 255, 255);
 		} else {
 			CCFG::getText()->Draw(rR, lMO[i]->getText(), lMO[i]->getXPos(), lMO[i]->getYPos(), 16, 90, 90, 90);

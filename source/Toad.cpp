@@ -32,6 +32,6 @@ void Toad::Draw(SDL_Renderer* rR, CImg* iIMG) {
 
 /* ******************************************** */
 
-void Toad::collisionWithPlayer(bool TOP) { }
+void Toad::collisionWithPlayer(bool /* TOP */) { }
 
-void Toad::setMinionState(int minionState) { }
+void Toad::setMinionState(int /* minionState */) { }

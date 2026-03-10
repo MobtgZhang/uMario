@@ -45,7 +45,7 @@ void PauseMenu::Draw(SDL_Renderer* rR) {
 	rPause.w += 2;
 
 	for(unsigned int i = 0; i < lMO.size(); i++) {
-		if(i == activeMenuOption) {
+		if(static_cast<int>(i) == activeMenuOption) {
 			CCFG::getText()->DrawCenterX(rR, lMO[i]->getText(), lMO[i]->getYPos(), 16, 255, 255, 255);
 		} else {
 			CCFG::getText()->DrawCenterX(rR, lMO[i]->getText(), lMO[i]->getYPos(), 16, 90, 90, 90);

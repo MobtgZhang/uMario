@@ -60,7 +60,7 @@ void Spikey::minionPhysics() {
 
 /* ******************************************** */
 
-void Spikey::collisionWithPlayer(bool TOP) {
+void Spikey::collisionWithPlayer(bool /* TOP */) {
 	if(Application::getMap()->getPlayer()->getStarEffect()) {
 		setMinionState(-2);
 	} else {

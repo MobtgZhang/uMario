@@ -245,6 +245,12 @@ void Event::Normal() {
 						Application::getMap()->addVine(vOLDLength[stepID], 0, 1, newLevelType == 0 || newLevelType == 4 ? 34 : 36);
 						vOLDLength[stepID] = 0;
 						break;
+					case ePLAYPIPETOP:
+						vOLDLength[stepID] -= 1;
+						CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cPIPE);
+						break;
+					default:
+						break;
 				}
 			} else {
 				++stepID;
@@ -315,6 +321,8 @@ void Event::Normal() {
 						Application::getMap()->getPlayer()->setYPos((float)Application::getMap()->getPlayer()->getYPos() - iSpeed);
 						vNEWLength[stepID] -= iSpeed;
 						Application::getMap()->getPlayer()->setMarioSpriteID(11);
+						break;
+					default:
 						break;
 				}
 			} else {

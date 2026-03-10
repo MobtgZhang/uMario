@@ -87,6 +87,6 @@ void UpFire::minionPhysics() { }
 
 /* ******************************************** */
 
-void UpFire::collisionWithPlayer(bool TOP) {
+void UpFire::collisionWithPlayer(bool /* TOP */) {
 	Application::getMap()->playerDeath(true, false);
 }

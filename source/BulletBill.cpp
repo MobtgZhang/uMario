@@ -3,7 +3,7 @@
 
 /* ******************************************** */
 
-BulletBill::BulletBill(int iXPos, int iYPos, bool moveDirection, int minionState) {
+BulletBill::BulletBill(int iXPos, int iYPos, bool /* moveDirection */, int minionState) {
 	this->fXPos = (float)iXPos;
 	this->fYPos = (float)iYPos - 2;
 

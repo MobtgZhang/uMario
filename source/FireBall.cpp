@@ -74,6 +74,6 @@ void FireBall::updateXPos() {
 
 /* ******************************************** */
 
-void FireBall::collisionWithPlayer(bool TOP) {
+void FireBall::collisionWithPlayer(bool /* TOP */) {
 	Application::getMap()->playerDeath(true, false);
 }

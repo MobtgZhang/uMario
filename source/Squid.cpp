@@ -73,7 +73,7 @@ void Squid::minionPhysics() { }
 
 /* ******************************************** */
 
-void Squid::collisionWithPlayer(bool TOP) {
+void Squid::collisionWithPlayer(bool /* TOP */) {
 	Application::getMap()->playerDeath(true, false);
 }
 

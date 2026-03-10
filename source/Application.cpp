@@ -280,6 +280,7 @@ void Application::InputPlayer() {
 					CCFG::getMM()->enter();
 					keyMenuPressed = true;
 				}
+				[[fallthrough]];
 			case SDLK_ESCAPE:
 				if(!keyMenuPressed && CCFG::getMM()->getViewID() == CCFG::getMM()->eGame) {
 					CCFG::getMM()->resetActiveOptionID(CCFG::getMM()->ePasue);

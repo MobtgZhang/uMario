@@ -65,7 +65,7 @@ void Mushroom::Draw(SDL_Renderer* rR, CImg* iIMG) {
 
 /* ******************************************** */
 
-void Mushroom::collisionWithPlayer(bool TOP) {
+void Mushroom::collisionWithPlayer(bool /* TOP */) {
 	if(!inSpawnState && minionState == 0) {
 		if(powerUP) {
 			Application::getMap()->getPlayer()->setPowerLVL(Application::getMap()->getPlayer()->getPowerLVL() + 1);
@@ -78,6 +78,5 @@ void Mushroom::collisionWithPlayer(bool TOP) {
 	}
 }
 
-void Mushroom::setMinionState(int minionState) {
-	
+void Mushroom::setMinionState(int /* minionState */) {
 }

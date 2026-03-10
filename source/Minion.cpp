@@ -34,7 +34,7 @@ Minion::~Minion(void) {
 /* ******************************************** */
 
 void Minion::Update() { }
-void Minion::Draw(SDL_Renderer* rR, CImg* iIMG) { }
+void Minion::Draw(SDL_Renderer* /* rR */, CImg* /* iIMG */) { }
 
 bool Minion::updateMinion() {
 	if (!minionSpawned) {
@@ -147,9 +147,9 @@ void Minion::collisionEffect() {
 	moveDirection = !moveDirection;
 }
 
-void Minion::collisionWithPlayer(bool TOP) { }
+void Minion::collisionWithPlayer(bool /* TOP */) { }
 
-void Minion::collisionWithAnotherUnit() { };
+void Minion::collisionWithAnotherUnit() { }
 
 void Minion::lockMinion() { }
 

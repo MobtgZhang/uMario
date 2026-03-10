@@ -97,4 +97,4 @@ void Spring::collisionWithPlayer(bool TOP) {
 	}
 }
 
-void Spring::setMinionState(int minionState) { }
+void Spring::setMinionState(int /* minionState */) { }

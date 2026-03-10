@@ -62,7 +62,7 @@ void Vine::minionPhysics() { }
 
 /* ******************************************** */
 
-void Vine::collisionWithPlayer(bool TOP) {
+void Vine::collisionWithPlayer(bool /* TOP */) {
 	if(minionState == 0) {
 		Application::getMap()->setInEvent(true);
 

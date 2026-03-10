@@ -56,11 +56,11 @@ void Flower::Draw(SDL_Renderer* rR, CImg* iIMG) {
 
 /* ******************************************** */
 
-void Flower::collisionWithPlayer(bool TOP) {
+void Flower::collisionWithPlayer(bool /* TOP */) {
 	if(!inSpawnState && minionState >= 0) {
 		Application::getMap()->getPlayer()->setPowerLVL(Application::getMap()->getPlayer()->getPowerLVL() + 1);
 		minionState = -1;
 	}
 }
 
-void Flower::setMinionState(int minionState) { }
+void Flower::setMinionState(int /* minionState */) { }

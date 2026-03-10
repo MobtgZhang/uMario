@@ -90,11 +90,11 @@ void Star::Draw(SDL_Renderer* rR, CImg* iIMG) {
 
 /* ******************************************** */
 
-void Star::collisionWithPlayer(bool TOP) {
+void Star::collisionWithPlayer(bool /* TOP */) {
 	if(!inSpawnState) {
 		Application::getMap()->getPlayer()->setStarEffect(true);
 		minionState = -1;
 	}
 }
 
-void Star::setMinionState(int minionState) { }
+void Star::setMinionState(int /* minionState */) { }

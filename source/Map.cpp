@@ -484,7 +484,7 @@ void Map::DrawLines(SDL_Renderer* rR) {
 
 /* ******************************************** */
 
-void Map::moveMap(int nX, int nY) {
+void Map::moveMap(int nX, int /* nY */) {
 	if (fXPos + nX > 0) {
 		oPlayer->updateXPos((int)(nX - fXPos));
 		fXPos = 0;
@@ -3455,6 +3455,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 82*32;
 			}
+			[[fallthrough]];
 		case 1:
 			switch(iID) {
 				case 0:
@@ -3462,6 +3463,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 89*32;
 			}
+			[[fallthrough]];
 		case 2:
 			switch(iID) {
 				case 0:
@@ -3469,6 +3471,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 66*32;
 			}
+			[[fallthrough]];
 		case 3:
 			return 64;
 		case 4:
@@ -3478,6 +3481,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 98*32;
 			}
+			[[fallthrough]];
 		case 5:
 			switch(iID) {
 				case 0:
@@ -3485,6 +3489,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 86*32;
 			}
+			[[fallthrough]];
 		case 6:
 			switch(iID) {
 				case 0:
@@ -3492,6 +3497,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 114*32;
 			}
+			[[fallthrough]];
 		case 7:
 			return 64;
 		case 8:
@@ -3501,6 +3507,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 90*32;
 			}
+			[[fallthrough]];
 		case 9:
 			switch(iID) {
 				case 0:
@@ -3508,6 +3515,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 98*32;
 			}
+			[[fallthrough]];
 		case 10:
 			switch(iID) {
 				case 0:
@@ -3515,6 +3523,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 66*32;
 			}
+			[[fallthrough]];
 		case 13:
 			switch(iID) {
 				case 0:
@@ -3522,6 +3531,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 95*32;
 			}
+			[[fallthrough]];
 		case 14:
 			switch(iID) {
 				case 0:
@@ -3529,6 +3539,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 65*32;
 			}
+			[[fallthrough]];
 		case 16:
 			switch(iID) {
 				case 0:
@@ -3536,6 +3547,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 97*32;
 			}
+			[[fallthrough]];
 		case 17:
 			switch(iID) {
 				case 0:
@@ -3543,6 +3555,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 177*32;
 			}
+			[[fallthrough]];
 		case 18:
 			switch(iID) {
 				case 0:
@@ -3550,6 +3563,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 66*32;
 			}
+			[[fallthrough]];
 		case 20:
 			switch(iID) {
 				case 0:
@@ -3557,6 +3571,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 98*32;
 			}
+			[[fallthrough]];
 		case 21:
 			switch(iID) {
 				case 0:
@@ -3564,6 +3579,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 183*32;
 			}
+			[[fallthrough]];
 		case 22:
 			switch(iID) {
 				case 0:
@@ -3571,6 +3587,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 98*32;
 			}
+			[[fallthrough]];
 		case 24:
 			switch(iID) {
 				case 0:
@@ -3578,6 +3595,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 98*32;
 			}
+			[[fallthrough]];
 		case 25:
 			switch(iID) {
 				case 0:
@@ -3585,6 +3603,7 @@ int Map::getSpawnPointXPos(int iID) {
 				case 1:
 					return 86*32;
 			}
+			[[fallthrough]];
 		case 26:
 			switch(iID) {
 				case 0:
@@ -3604,6 +3623,7 @@ int Map::getSpawnPointYPos(int iID) {
 				case 0:
 					return 64;
 			}
+			[[fallthrough]];
 		case 5: case 25:
 			switch(iID) {
 				case 0:
@@ -3611,6 +3631,7 @@ int Map::getSpawnPointYPos(int iID) {
 				case 1:
 					return CCFG::GAME_HEIGHT - 48 - oPlayer->getHitBoxY();;
 			}
+			[[fallthrough]];
 		case 3: case 7: case 11: case 15: case 19: case 23: case 27: case 31:
 			return 150;
 	}
@@ -9788,7 +9809,7 @@ void Map::startLevelAnimation() {
 	}
 }
 
-void Map::spawnVine(int nX, int nY, int iBlockID) {
+void Map::spawnVine(int nX, int nY, int /* iBlockID */) {
 	if(iLevelType == 0 || iLevelType == 4) {
 		addVine(nX, nY, 0, 34);
 	} else {
